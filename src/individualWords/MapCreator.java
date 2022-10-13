@@ -12,6 +12,8 @@ public class MapCreator
   public static HashMap<String, Integer> syllables = new HashMap<String, Integer>();
   public static HashMap<String, Integer> count = new HashMap<String, Integer>();
   
+//  public static int totalUniqueWords = 0;
+  
   private static void addToMap(HashMap<String, String> mapName, String word, String value)
   {
     mapName.put(word, value);
@@ -37,6 +39,10 @@ public class MapCreator
 //      word = wordToAdd.toLowerCase();  
 //    }
     
+//    if (wordToAdd.toLowerCase().equals("alice"))
+//    {
+//      System.out.println("wordToAdd = " + wordToAdd + " | word = " + word);
+//    }
     
     
     if (!normalized.containsKey(word))

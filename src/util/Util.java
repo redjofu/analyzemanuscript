@@ -13,4 +13,12 @@ public class Util
       return word.toLowerCase();  
     }
   }
+  
+  public static void main(String[] args)
+  {
+    String testy = "A";
+    String testy2 = lowerOrUpperCase(testy);
+    System.out.println(testy2);
+
+  }
 }

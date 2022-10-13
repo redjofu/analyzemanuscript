@@ -20,7 +20,7 @@ public class ParagraphStats
 //  }
   
   static int totalSentences = 0;
-  static int totalWords = 0;
+  public static int totalWords = 0;
   static int totalSyllables = 0;
   
   private static int calculateTotalSentences(String[][] paragraph)
