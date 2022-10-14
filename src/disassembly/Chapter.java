@@ -1,5 +1,4 @@
 package disassembly;
-//import sampleBooks.AliceFirstChapter;
 import sampleBooks.*;
 
 public class Chapter
@@ -34,12 +33,8 @@ public class Chapter
     return chapter;
   }
   
-//  public static String adjustedChapter = aliceFirstChapter.replace("\r\n\r\n","\r\n");
-  
   static String prepareChapter(String chapter)
   {
-//    String chapter = TomSawyer.firstChapter;
-    
     chapter = removeDuplicateLineBreaks(chapter);
     chapter = addSpacesAroundDashes(chapter);
     chapter = removeDuplicateSpaces(chapter);
@@ -49,16 +44,8 @@ public class Chapter
 
   public static void main(String[] args)
   {
-//    StringBuilder alice = new StringBuilder(aliceFirstChapter);
-//    StringBuilder alice = new StringBuilder(adjustedChapter);
-    
-//    System.out.println(alice);
-    String chapter = TomSawyer.firstChapter;
-    
-    
+    String chapter = TomSawyer.firstChapter; 
     System.out.println(prepareChapter(chapter));
-    
-//    System.out.println(removeDuplicateSpaces(sampleChapter()).indexOf("  "));
   }
 
 }

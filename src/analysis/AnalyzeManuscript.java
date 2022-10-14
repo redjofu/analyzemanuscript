@@ -211,10 +211,19 @@ public class AnalyzeManuscript
     System.out.println("Percentage of Unique Words: " + uniqueWordPercentage + "%");
   }
   
+  
+  // This is the actual main method currently used that brings everything together.
   public static void main(String[] args) throws IOException
   {
-//    String sampleChapter = TomSawyer.firstChapter;
-    String sampleChapter = AliceFirstChapter.firstChapter;
+    // I comment various sample chapters in and out as part of my testing. This is the data that I'm feeding the rest
+    // of the program.
+    String sampleChapter = TomSawyer.firstChapter;
+//    String sampleChapter = AliceFirstChapter.firstChapter;
+//    String sampleChapter = Forgone.firstPart;
+    
+    // This parses the sample manuscript/chapter into its various components, stored in a multidimensional array.
+    // All of that is handled by various classes in the "disasembly" package, which is accessed via the ManuscriptData
+    // class.
     String[][][] chapter = ManuscriptData.createAllManuscriptData(sampleChapter);
     
     System.out.println("*******************************************");

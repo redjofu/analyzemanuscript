@@ -4,7 +4,6 @@ import sampleBooks.TomSawyer;
 
 public class Paragraph
 {
-  
   private static String newLineChar = "\r\n";
   
   private static int countNumParagraphs(String chapter)
@@ -17,98 +16,36 @@ public class Paragraph
   
   static String[] separateChapterToParagraphs(String chapter)
   {
+    // Setting up the array. I know how many paragraphs there will be based on how many line breaks there are.
     String[] paragraphs = new String[countNumParagraphs(chapter)];
     
+    // A paragraph is determined by all of the words between line breaks. This goes through the chapter, grabbing all
+    // the text up to the next line break. It uses the chapterIndex variable to remember where the last paragraph left
+    // off.
     int chapterIndex = 0;
-    
     for (int i=0; i<paragraphs.length; i++)
     {
-      if (i < paragraphs.length - 1)
+      if (i < paragraphs.length - 1) // If there are at least two paragraphs left
       {
         paragraphs[i] = chapter.substring(chapterIndex, chapter.indexOf(newLineChar, chapterIndex));    
       }
-      else
+      else // If this is the last paragraph
       {
         paragraphs[i] = chapter.substring(chapterIndex, chapter.length());
       }
 
-      chapterIndex = chapter.indexOf(newLineChar, chapterIndex) + newLineChar.length();    
-      
-//      System.out.println("Paragraph " + (i+1) + "(Length: " + paragraphs[i].length() + ") – " + paragraphs[i]);
+      // The chapterIndex value needs to be adjusted after each paragraph so the next iteration in the loop knows
+      // where to begin the next paragraph.
+      chapterIndex = chapter.indexOf(newLineChar, chapterIndex) + newLineChar.length();  
     }
     
     return paragraphs;
   }
-  
-  private static void toyingAround()
-  {
-//    StringBuilder aliceParagraphs = new StringBuilder(Chapter.aliceFirstChapter);
-//    
-//    System.out.println(aliceParagraphs.indexOf("blah"));
-//    
-//    System.out.println(aliceParagraphs.indexOf("\r\n"));
-//    System.out.println(aliceParagraphs.length());
-//    
-//    
-////    aliceParagraphs.delete(aliceParagraphs.indexOf("\r\n"), aliceParagraphs.length());
-//    System.out.println(aliceParagraphs.indexOf("\r\n"));
-//    aliceParagraphs = aliceParagraphs.delete(0, aliceParagraphs.indexOf("\r\n"));
-//    aliceParagraphs = aliceParagraphs.delete(0, aliceParagraphs.indexOf("\r\n"));
-//    aliceParagraphs = aliceParagraphs.delete(0, aliceParagraphs.indexOf("\r\n"));
-//    aliceParagraphs = aliceParagraphs.delete(0, aliceParagraphs.indexOf("\r\n"));
-//    aliceParagraphs =  aliceParagraphs.delete(0, aliceParagraphs.indexOf("\r\n"));
-//    aliceParagraphs =  aliceParagraphs.delete(0, aliceParagraphs.indexOf("\r\n"));
-//    
-//    System.out.println(aliceParagraphs);
-//    System.out.println(aliceParagraphs.indexOf("\r\n"));
-//    
-//    
-////    Chapter firstChapter = new Chapter();
-//    
-//    StringBuilder[] paragraphs;
-//    
-//    paragraphs.
-    
-//    paragraphs.add("hello");
-    
-//    aliceParagraphs.delete(20,)
-    
-    
-    
-//    System.out.println(firstChapter.aliceFirstChapter);
-  }
-  
 
   public static void main(String[] args)
   {
-
-//    toyingAround();
     String chapter = TomSawyer.firstChapter;
     separateChapterToParagraphs(Chapter.prepareChapter(chapter));
-    
-    
-//    System.out.println("Hello");
-//    System.out.println(countNumParagraphs(Chapter.adjustedChapter));
-    
-
-    
-//    paragraphs[numParagraphs-1] = "Hello " + (numParagraphs-1);
-    
-//    System.out.println(paragraphs[numParagraphs-1]);
-    
-//    System.out.println(numParagraphs);
-    
-//    System.out.println(chapter.indexOf(newLineChar));
-//    
-//    String firstParagraph = chapter.substring(0, chapter.indexOf(newLineChar, 0));
-//    
-//    System.out.println(firstParagraph);
-//    
-//    String secondParagraph = chapter.substring(304, chapter.indexOf(newLineChar, 304));
-//    
-//    System.out.println(secondParagraph);
-    
-
   }
 
 }
