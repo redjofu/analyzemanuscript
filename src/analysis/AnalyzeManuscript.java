@@ -24,7 +24,6 @@ public class AnalyzeManuscript
     
     for (int i = 0; i < readabilityStats.length; i++)
     {
-//      NumberFormat twoDecimals = new DecimalFormat("0.00");
       String fleschKincaid = twoDecimals.format(readabilityStats[i][0]);
       float fleschfloat = readabilityStats[i][1];
       String judgement = judgeReadability(fleschfloat);
@@ -222,7 +221,7 @@ public class AnalyzeManuscript
 //    String sampleChapter = Forgone.firstPart;
     
     // This parses the sample manuscript/chapter into its various components, stored in a multidimensional array.
-    // All of that is handled by various classes in the "disasembly" package, which is accessed via the ManuscriptData
+    // All of that is handled by various classes in the "disassembly" package, which is accessed via the ManuscriptData
     // class.
     String[][][] chapter = ManuscriptData.createAllManuscriptData(sampleChapter);
     

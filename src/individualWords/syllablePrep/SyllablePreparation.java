@@ -7,26 +7,18 @@ public class SyllablePreparation
   {
     String word = wordToPrepare;
     
+    // Remove any non-alphanumeric characters from the beginning or end of the word.
     word = WrappingPunctuation.removeWrappingPunctuation(word);
-//    System.out.println("WrappingPunctuation: " + word);
     
+    // Change numbers into full words. This doesn't always work perfectly, but it does get it to the point where it's 
+    // going to recognize something like "105" as more than a single word without any vowels.
     word = NumbersToWords.convertNumbersIntoWords(word);
-//    System.out.println("NumbersToWords: " + word);
     
-    word = Acronyms.detectAcronyms(word);
-//    System.out.println("Acronyms: " + word);
-    
+    word = Acronyms.detectAcronyms(word); 
     word = word.toLowerCase();
-//    System.out.println("toLowerCase: " + word);
-    
-    word = Abbreviations.convertAbbreviations(word);
-//    System.out.println("Abbreviations: " + word);
-    
+    word = Abbreviations.convertAbbreviations(word);  
     word = SingleW.replaceSingleW(word);
-//    System.out.println("SingleW: " + word);
-    
     word = Dehyphen.dehyphen(word);
-//    System.out.println("Dehyphen: " + word);
     
     return word;
   }
@@ -34,11 +26,7 @@ public class SyllablePreparation
   public static void main(String[] args)
   {
     String test = "WD-40";
-    
     String test2 = prepareForSyllables(test);
-    
     System.out.println(test2);
-
   }
-
 }

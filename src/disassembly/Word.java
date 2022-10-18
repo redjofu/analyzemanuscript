@@ -99,8 +99,8 @@ public class Word
     String sampleSentence2 = "The figure lunges toward me, and I scream—the full-on blood-curdling kind, shriller than any I’ve ever released.";
     String sampleSentence3 = "I shift my attention to her, matching the intensity in her gaze. “Oh, acting like I’m part of the group now?” My eyes dart around the room again. “I’m just keeping a lookout. I saw the shadowman around here, remember? Can you blame me?”";
     
-    // Note, for debugging purposes, I was using the addSpacesAroundDashes method from the chapter.java class. I'm done
-    // debugging that, so I've removed it, but if needed again, that's where it's found.
+    // Note to self: for debugging purposes, I was using the addSpacesAroundDashes method from the chapter.java class. 
+    // I'm done debugging that, so I've removed it, but if needed again, that's where it's found.
 //    sampleSentence2 = addSpacesAroundDashes(sampleSentence2);
     
     String tokenizedSample[] = tokenizeParagraph(sampleSentence3);

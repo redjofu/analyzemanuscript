@@ -6,19 +6,12 @@ import java.util.regex.Pattern;
 class NumbersToWords
 {
   
-//  private static String convertOnesPlace(String numberAsString)
-//  {
-//    
-//  }
-  
   private static String convertNumberToWords(String number)
   {
-//    String number = numberAsString;
     String word = "";
     
     if (number.length() == 4 && number.charAt(1) != '0' && number.charAt(2) != '0')
     {
-//      System.out.println("Converting year to words...");
       word = convertYearToWords(number);
     }
     else if (number.length() > 1)
@@ -26,27 +19,16 @@ class NumbersToWords
       int tensPlace = number.length()-2;
       int currentPlace = 1; // Starting from lower level. 1 == ones place, 2 == tens place, 3 == hundreds place, etc.
       int forLoopStartingPoint = number.length()-1;
-//      System.out.println("number.length(): " + number.length());
-//      System.out.println("Tens place: " + (number.charAt(tensPlace)));
-//      
-//      System.out.println("Number are char 1: " + (number.charAt(number.length()-1)));
       
       if (number.length() >= 2 && (number.charAt(tensPlace) == '1' || number.charAt(tensPlace) == '0'))
       {        
         forLoopStartingPoint -= 2;
         currentPlace = 3;
-        
-//        String doubleDigitNumber = String.valueOf(number.charAt(tensPlace)) + 
-//                                   String.valueOf(number.charAt(tensPlace+1));
-//        
-//        word = replaceNumbersWithWords(doubleDigitNumber);
-        
         word = replaceTeenWithWords(number, tensPlace);
       }
       
       for (int i = forLoopStartingPoint; i > -1; i--)
       {
-//        System.out.println("Index: " + i + " - Number that index: " + number.charAt(i));
         String currentNumber = String.valueOf(number.charAt(i));
         
         if (currentPlace == 1 && !currentNumber.equals("0"))
@@ -55,28 +37,12 @@ class NumbersToWords
         }
         else if (!currentNumber.equals("0"))
         {
-//          System.out.println("currentNumber == " + currentNumber);
-//          System.out.println("currentPlace == " + currentPlace);
-          
           if (currentPlace == 2) { word = replaceTensPlaceWithWords(currentNumber) + word; }
           else if (currentPlace == 3) { word = replaceNumbersWithWords(currentNumber) + "hundred" + word; }
           else if (currentPlace == 4 && number.length() > currentPlace && number.charAt(i) == '1')
           {
-//            System.out.println("Activating teen words method for thousands place...");
-//            System.out.println("****************************");
-//            System.out.println("index i == " + i);
-//            System.out.println("number.charAt(i) == " + String.valueOf(number.charAt(i)));
-//            System.out.println("index i+1 == " + (i+1));
-//            System.out.println("number.charAt(i+1) == " + String.valueOf(number.charAt(i+1)));
-//            System.out.println("index i-1 == " + (i-1));
-//            System.out.println("number.charAt(i-1) == " + String.valueOf(number.charAt(i-1)));
-//            System.out.println("****************************");
             word = replaceTeenWithWords(number, currentPlace-1) + "thousand" + word;
             currentPlace++;
-//            String doubleDigitNumber = String.valueOf(number.charAt(5)) + 
-//            String.valueOf(number.charAt(tensPlace+1));
-//
-//              word = replaceNumbersWithWords(doubleDigitNumber);
           }
           else if (currentPlace == 4) { word = replaceNumbersWithWords(currentNumber) + "-thousand-" + word; }
           else if (currentPlace == 5) { word = replaceTensPlaceWithWords(currentNumber) + word; }
@@ -96,7 +62,6 @@ class NumbersToWords
           if (currentPlace == 7 && Integer.parseInt(number) > 9999999) { word = "-million-" + word; }
         }
         currentPlace++;
-//        System.out.println("word is currently: " + word);
       }
     }
     else
@@ -116,8 +81,6 @@ class NumbersToWords
       String firstTwoDigits = String.valueOf(year.charAt(0)) + String.valueOf(year.charAt(1));
       String secondTwoDigits = String.valueOf(year.charAt(2)) + String.valueOf(year.charAt(3));
       word = convertNumberToWords(firstTwoDigits) + convertNumberToWords(secondTwoDigits);
-//      System.out.println("firstTwoDigits: " + firstTwoDigits);
-//      System.out.println("secondTwoDigits: " + secondTwoDigits);
     }
     catch (Exception e)
     {
@@ -161,8 +124,6 @@ class NumbersToWords
     word = word.replace("9", "-nine-");
     word = word.replace(".", "-point-");
     
-//    System.out.println(wordWithNumbers + " has become: " + word);
-    
     return word;
   }
   
@@ -182,21 +143,6 @@ class NumbersToWords
     return word;
   }
   
-//  private static String replaceHundredsPlaceWithWords(String hundredsPlace)
-//  {
-//    
-//  }
-  
-//  private static String replaceTensPlaceWithWords(String tensPlace)
-//  {
-//    
-//  }
-//  
-//  private static String replaceTensPlaceWithWords(String tensPlace)
-//  {
-//    
-//  }
-//  
   private static int checkForNumber(String word)
   {
     Pattern digits = Pattern.compile("(\\d)");
@@ -229,46 +175,34 @@ class NumbersToWords
       areThereNumbers = 2;    // Yes, single digit, so treat as though non-numbers included
     }
     
-//    System.out.println(digitMatcher.find());
-//    System.out.println(nondigitMatcher.find());
-    
     return areThereNumbers;
   }
   
   static String convertNumbersIntoWords(String wordToPrep)
   {
-//    System.out.println(wordToPrep);
-    
     String word = wordToPrep;
     
     int areThereNumbers = checkForNumber(word);
     
-    if (areThereNumbers == 2)       // Numbers and words
+    if (areThereNumbers == 2)       // Numbers and words, plus numbers only of less than 1 billion
     {
-//      System.out.println("Letters and Numbers");
       word = replaceNumbersWithWords(word);
     }
-    else if (areThereNumbers == 1)  // Numbers only
+    else if (areThereNumbers == 1)  // Numbers only of 1 billion or more
     {
-//      System.out.println("Only Numbers");
       word = convertNumberToWords(word);
     }
     
-
-//    System.out.println(word);
     return word;
   }
 
   public static void main(String[] args)
   {
 //    convertNumbersIntoWords("400100701");
-    
     String test = convertNumbersIntoWords("1984");
     System.out.println(test);
 //    String number = "1234";
 //    System.out.println(number.charAt(1));
-
-
   }
 
 }
