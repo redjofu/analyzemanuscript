@@ -184,11 +184,11 @@ class NumbersToWords
     
     int areThereNumbers = checkForNumber(word);
     
-    if (areThereNumbers == 2)       // Numbers and words, plus numbers only of less than 1 billion
+    if (areThereNumbers == 2)       // Numbers and words, plus numbers only over 1 billion
     {
       word = replaceNumbersWithWords(word);
     }
-    else if (areThereNumbers == 1)  // Numbers only of 1 billion or more
+    else if (areThereNumbers == 1)  // Numbers only (no words)
     {
       word = convertNumberToWords(word);
     }
