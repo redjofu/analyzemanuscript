@@ -12,6 +12,10 @@ class NumbersToWords
     
     if (number.length() == 4 && number.charAt(1) != '0' && number.charAt(2) != '0')
     {
+      // If the number has exactly four digits, I treat it different as thought it's a year. The exception is if the
+      // middle two digits are zeroes. The reasoning for this is that most years are pronounced separating the year
+      // into two sets of words. So 1984 is pronounced "nineteen eighty-four" instead of "one thousand, nine hundred,
+      // eighty-four." However, a year like 2009 doens't follow this pronunciation pattern.
       word = convertYearToWords(number);
     }
     else if (number.length() > 1)
@@ -66,6 +70,7 @@ class NumbersToWords
     }
     else
     {
+      // For those times when it's a single-digit number
       word = replaceNumbersWithWords(number);
     }
     
@@ -76,6 +81,11 @@ class NumbersToWords
   {
     String word = "zero";
     
+    // I need to separate a year into two the first two digits and the last two digits. I put in a try/catch here
+    // mostly just to try it out... it's probably not necessary as I already check to make sure that there are only 
+    // four digits before running the method. Still, there would be a problem if the method is run on something with
+    // the wrong number of digits for some strange reason, and this would catch any issues with that and just return
+    // the word back without making any changes if so.
     try
     {
       String firstTwoDigits = String.valueOf(year.charAt(0)) + String.valueOf(year.charAt(1));
@@ -101,7 +111,8 @@ class NumbersToWords
   private static String replaceNumbersWithWords(String wordWithNumbers)
   {
     String word = wordWithNumbers;
-       
+    
+    // Double-digits need to come first so it doesn't so something like "-one--oh-" instead of "-ten-."
     word = word.replace("10", "-ten-");
     word = word.replace("11", "-eleven-");
     word = word.replace("12", "-twelve-");
