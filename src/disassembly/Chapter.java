@@ -33,11 +33,56 @@ public class Chapter
     return chapter;
   }
   
-  static String prepareChapter(String chapter)
+  static String prepareChapter(String chapterToPrep)
   {
+    String chapter = chapterToPrep;
     chapter = removeDuplicateLineBreaks(chapter);
     chapter = addSpacesAroundDashes(chapter);
-    chapter = removeDuplicateSpaces(chapter);
+    if (chapter.contains(newLineChar + newLineChar))
+    {
+      chapter = removeDuplicateSpaces(chapter);
+      System.out.println("1");
+    }
+    
+    if (chapter.contains(newLineChar + newLineChar))
+    {
+      chapter = removeDuplicateSpaces(chapter);
+      System.out.println("2");
+    }
+    
+    
+    if (chapter.contains(newLineChar + newLineChar))
+    {
+      chapter = removeDuplicateSpaces(chapter);
+      System.out.println("3");
+    }
+    
+    
+    if (chapter.contains(newLineChar + newLineChar))
+    {
+      chapter = removeDuplicateSpaces(chapter);
+      System.out.println("4");
+    }
+    
+    
+    if (chapter.contains(newLineChar + newLineChar))
+    {
+      chapter = removeDuplicateSpaces(chapter);
+      System.out.println("5");
+    }
+    
+    if (chapter.contains(newLineChar + newLineChar))
+    {
+      chapter = removeDuplicateSpaces(chapter);
+      System.out.println("6");
+    }
+    
+    if (chapter.contains(newLineChar + newLineChar))
+    {
+      chapter = removeDuplicateSpaces(chapter);
+      System.out.println("7");
+    }
+    
     
     return chapter;
   }

@@ -1075,9 +1075,6 @@ class Acronyms
       "ZUG|" +
       "ZUI|" +
       "Z+";
-      
-//    String testy = "YILP|" +
-//      "YOLO";
     
     if (word.matches(acronymsPronouncedAsWords))
     {
@@ -1087,27 +1084,17 @@ class Acronyms
     {
       return false;
     }
-    
-    
-    
-//    Pattern pattern = Pattern.compile(acronymsPronouncedAsWords);
-//    Matcher matcher = pattern.matcher(word);
-//
-//    
-//    if (matcher.find())
-//    {
-//      return true;
-//    }
-//    else
-//    {
-//      return false;
-//    }
   }
 
   static String detectAcronyms(String wordToCheck)
   {
     String word = wordToCheck;
     
+    // There are two checks to determine if I treat a word as an acronym. If the word isn't in ALL CAPS, I assume it's
+    // not an acronym – or at least not pronounced like one. Second, I use the isPronouncedAsWord method to go through 
+    // a list of acronyms which I assume are pronounced as words (e.g. BASIC). It's not a perfect list, but I figure
+    // it's good enough. If it's not on that list, I assume it's an acronym that is supposed to have each letter 
+    // pronounced individually. This is done by placing a hyphen between each letter.
     if (word.equals(wordToCheck.toUpperCase()) && isPronouncedAsWord(word) == false)
     {
       String hyphenatedWord = "";
@@ -1119,15 +1106,11 @@ class Acronyms
       
       word = hyphenatedWord;
     }
-    
-//    System.out.println(word);
     return word;
   }
   
   public static void main(String[] args)
   {
     detectAcronyms("BUZZ");
-
-
   }
 }

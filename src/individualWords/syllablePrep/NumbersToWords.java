@@ -31,6 +31,7 @@ class NumbersToWords
         word = replaceTeenWithWords(number, tensPlace);
       }
       
+      // This for loop essentially runs through the number right to left, converting each digit to a word.
       for (int i = forLoopStartingPoint; i > -1; i--)
       {
         String currentNumber = String.valueOf(number.charAt(i));
@@ -103,7 +104,7 @@ class NumbersToWords
   private static String replaceTeenWithWords(String teenWord, int placeToReplace)
   {
     String doubleDigitNumber = String.valueOf(teenWord.charAt(placeToReplace)) + 
-    String.valueOf(teenWord.charAt(placeToReplace+1));
+      String.valueOf(teenWord.charAt(placeToReplace+1));
     
     return replaceNumbersWithWords(doubleDigitNumber);
   }

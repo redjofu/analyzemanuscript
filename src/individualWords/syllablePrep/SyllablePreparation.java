@@ -14,10 +14,22 @@ public class SyllablePreparation
     // going to recognize something like "105" as more than a single word without any vowels.
     word = NumbersToWords.convertNumbersIntoWords(word);
     
-    word = Acronyms.detectAcronyms(word); 
+    // Check if the word is an acronym and, if so, format it so that each letter is pronounced individually.
+    word = Acronyms.detectAcronyms(word);
+    
+    // The later methods require the word to be in all lower-case to determine syllable count. However, this can't
+    // be done before the detectAcronyms method since that method depends on knowing whether a word is in ALL CAPS.
     word = word.toLowerCase();
-    word = Abbreviations.convertAbbreviations(word);  
+    
+    // Check through a short list of abbreviations and convert to full words (e.g. mr --> mister).
+    word = Abbreviations.convertAbbreviations(word);
+    
+    // This method replaces "w" with "double-u." I couldn't think of a more appropriate place to do that, so I made it
+    // its own method.
     word = SingleW.replaceSingleW(word);
+    
+    // Several of these methods add hyphens around individual letters or words. This method removes those unnecessary
+    // hyphens.
     word = Dehyphen.dehyphen(word);
     
     return word;

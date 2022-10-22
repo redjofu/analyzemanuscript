@@ -35,7 +35,5 @@ class Dehyphen
     String test2 = dehyphen(test);
     
     System.out.println(test2);
-
   }
-
 }

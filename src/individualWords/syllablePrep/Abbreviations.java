@@ -2,8 +2,6 @@ package individualWords.syllablePrep;
 
 class Abbreviations
 {
-
-  
   private static String checkAndConvertAbbreviations(String wordToConvert, String abbreviation, String fullWord)
   {
     String word = wordToConvert;
@@ -21,7 +19,6 @@ class Abbreviations
     String word = wordToConvert;
     
     word = checkAndConvertAbbreviations(word, "acct", "accountant");
-    
     word = checkAndConvertAbbreviations(word, "appt", "appointment");
     word = checkAndConvertAbbreviations(word, "approx", "approximately");
     word = checkAndConvertAbbreviations(word, "asst", "assistant");
@@ -49,32 +46,6 @@ class Abbreviations
     // Better suited for acronym class, but won't be picked up there because it's lower-case
     word = checkAndConvertAbbreviations(word, "www", "-w-w-w-");
     
-//    
-//    word = word.replace("acct", "accountant");
-//    word = word.replace("appt", "appointment");
-//    word = word.replace("approx", "approximately");
-//    word = word.replace("asst", "assistant");
-//    word = word.replace("blvd", "boulevard");
-//    word = word.replace("cm", "centimeter");
-//    word = word.replace("cyn", "canyon");
-//    word = word.replace("dept", "department");
-//    word = word.replace("dr", "doctor");
-//    word = word.replace("est", "established");
-//    word = word.replace("iii", "the-third");
-//    word = word.replace("ii", "the-second");
-//    word = word.replace("jr", "junior");
-//    word = word.replace("kg", "kilogram");
-//    word = word.replace("ltd", "limited");
-//    word = word.replace("mg", "milligram");
-//    word = word.replace("mph", "miles-per-hour");
-//    word = word.replace("mrs", "misses");
-//    word = word.replace("mr", "mister");
-//    word = word.replace("sra", "senora");
-//    word = word.replace("sr", "senior");
-//    word = word.replace("tbsp", "tablespoon");
-//    word = word.replace("tsp", "teaspoon");
-//    word = word.replace("vs", "versus");
-    
     return word;
   }
   
@@ -82,7 +53,5 @@ class Abbreviations
   {
     String test = convertAbbreviations("mg");
     System.out.println(test);
-
   }
-
 }
