@@ -36,15 +36,12 @@ public class AnalyzeManuscript
   
   private static void printTotalReadabilityStats()
   {
-//    NumberFormat twoDecimals = new DecimalFormat("0.00");
     float[] totalReadabilityStats = ParagraphStats.calculateTotalFleschKincaid();
     String totalFleschKincaid = twoDecimals.format(totalReadabilityStats[0]);
     float totalFleschFloat = totalReadabilityStats[1];
     String judgement = judgeReadability(totalFleschFloat);
     String totalFlesch = twoDecimals.format(totalFleschFloat);
     
-//    System.out.println(judgement + ": (Total – Flesch-Kincaid Grade Level: " + totalFleschKincaid + 
-//      " | Flesch Reading Ease: " + totalFlesch + ")");
     System.out.println(judgement);
     System.out.println("Flesch-Kincaid Grade Level: " + totalFleschKincaid);
     System.out.println("Flesch Reading Ease: " + totalFlesch);
@@ -52,6 +49,8 @@ public class AnalyzeManuscript
   
   private static String judgeReadability(float flesch)
   {
+    // These judgments are based partly on established standards for the Flesch readability formula and partly on my
+    // interpretation of those standards.
     if (flesch > 100f)
     {
       return "Very Easy, Suitable for All Novel Readers";
@@ -84,7 +83,6 @@ public class AnalyzeManuscript
   
   private static void printWordCount(HashMap<String, Integer>sortedMap)
   {
-//    HashMap<String, Integer>countMap = MapCreator.count;
     HashMap<String, Integer>countMap = sortedMap;
     
     for (Entry<String, Integer> entry : countMap.entrySet())
@@ -95,66 +93,36 @@ public class AnalyzeManuscript
   
   private static HashMap<String, Integer> sortHashMap(HashMap<String, Integer>mapToSort)
   {
-//    HashMap<String, Integer>countMap = MapCreator.count;
     HashMap<String, Integer>countMap = mapToSort;
-//    TreeMap<String, Integer>keySortedMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-//    
-//    keySortedMap.putAll(countMap);
-//    
-//    
-//    ArrayList<Integer> countList = new ArrayList<>();
-//    
-//    for (Entry<String, Integer> entry : keySortedMap.entrySet())
-//    {
-////      System.out.println(entry);
-////      wordList.add(entry.getKey());
-//      if (!countList.contains(entry.getValue()))
-//      {
-//        countList.add(entry.getValue());
-//      }
-//    }
     
-//    Collections.sort(countList, Collections.reverseOrder());
-//    LinkedHashMap<String, Integer>finalSortedMap = new LinkedHashMap<String, Integer>();
-//    
-//    for (int count : countList)
-//    {
-////      System.out.println(count);
-//      for (Entry<String, Integer> entry : keySortedMap.entrySet())
-//      {
-////        System.out.println(entry);
-//        if (count == entry.getValue())
-//        {
-//          finalSortedMap.put(entry.getKey(), entry.getValue());
-//        }
-////        if ( entry.getValue()))
-//      }
-//    }
-    
-    
-    LinkedHashMap<String, Integer>keySortedMap = new LinkedHashMap<>();
+    // LinkedHashMap is required to preserve order.
+    LinkedHashMap<String, Integer>keySortedMap = new LinkedHashMap<String, Integer>(); 
+    LinkedHashMap<String, Integer>finalSortedMap = new LinkedHashMap<String, Integer>();
 
+    // A list of all the words (keys) in the map
     ArrayList<String> wordList = new ArrayList<>();
+    // A list of all the unique numbers (values) in the map
     ArrayList<Integer> countList = new ArrayList<>();
     
     for (Entry<String, Integer> entry : countMap.entrySet())
     {
-//      System.out.println(entry);
       wordList.add(entry.getKey());
+      // I only want to add a number to the countList if it's unique.
       if (!countList.contains(entry.getValue()))
       {
         countList.add(entry.getValue());
       }
     }
     
+    // Alphabetize the wordList
     Collections.sort(wordList);
     
+    // Now that the wordList is alphabetized, I use it to populate the keySortedMap with an alphabetically sorted 
+    // version of the countMap.
     for (String word : wordList)
     {
-//      System.out.println(word);
       for (Entry<String, Integer> entry: countMap.entrySet())
       {
-//        System.out.println(entry);
         if (word.equals(entry.getKey()))
         {
           keySortedMap.put(entry.getKey(), entry.getValue());
@@ -162,35 +130,21 @@ public class AnalyzeManuscript
       }
     }
     
-    
-
-    
+    // Sort the countList in descending order (highest numbers first)
     Collections.sort(countList, Collections.reverseOrder());
-    LinkedHashMap<String, Integer>finalSortedMap = new LinkedHashMap<String, Integer>();
     
+    // Now that the countList is ordered, I use it to populate the finalSortedMap, higher count values first. In cases
+    // where the count values are equal, the previously calculated alphabetical order is preserved.
     for (int count : countList)
     {
-//      System.out.println(count);
       for (Entry<String, Integer> entry : keySortedMap.entrySet())
       {
-//        System.out.println(entry);
         if (count == entry.getValue())
         {
           finalSortedMap.put(entry.getKey(), entry.getValue());
         }
-//        if ( entry.getValue()))
       }
     }
-    
-    
-    
-    
-    
-    
-//    for (Entry<String, Integer> entry : finalSortedMap.entrySet())
-//    {
-//      System.out.println(entry);
-//    }
     
     return finalSortedMap;
   }
@@ -229,58 +183,30 @@ public class AnalyzeManuscript
     System.out.println("*************READABILITY STATS*************");
     System.out.println("*******************************************");
     
+    // This prints out various readability stats in the console. Each paragraph gets its own line.
     printReadabilityStats(chapter);
 
     System.out.println("*******************************************");
     System.out.println("*************WORD COUNT STATS**************");
     System.out.println("*******************************************");
     
-    HashMap<String, Integer>countMap = MapCreator.count;
-    HashMap<String, Integer>sortedMap = sortHashMap(countMap);
+    // To before printing the "count" HashMap, I first want to sort it by count (more frequent words showing first) and
+    // then sort alphabetically.
+    HashMap<String, Integer>sortedMap = sortHashMap(MapCreator.count);
+    
+    // This prints the number of times each word appears in the manuscript in the console. Each word gets its own line.
     printWordCount(sortedMap);
     
     System.out.println("*******************************************");
     System.out.println("****************TOTAL STATS****************");
     System.out.println("*******************************************");
     
+    // This prints out readability stands for the entire manuscript (not just individual paragraphs).
     printTotalReadabilityStats();
     
     System.out.println("*******************************************");
     
-    printWordTotalCount();
-    
-    
-    
-//    float testy1 = 10.409F;
-//    float testy2 = 10.5908F;
-//    
-//    int zesty1 = Math.round(testy1);
-//    int zesty2 = Math.round(testy2);
-//    
-//    System.out.println(zesty1);
-//    System.out.println(zesty2);
-    
-    
-//    float uniqueWordDivision = (float) totalUniqueWords / totalWords;
-//    
-//    int uniqueWordPercentage = (int) (uniqueWordDivision * 100);
-//    
-//    System.out.println("Percentage of Unique Words: " + uniqueWordPercentage);
-    
-
-//    System.out.println("***********************end************************");
-//    for (Entry<String, Integer> entry : countMap.entrySet())
-//    {
-//      System.out.println(entry.getKey() + ": " + entry.getValue());
-//    }
-//    
-//    HashMap<String, String>normalizedMap = MapCreator.normalized;
-//    
-//    for (Entry<String, String> entry : normalizedMap.entrySet())
-//    {
-//      System.out.println(entry.getKey());
-//    }
-    
+    // This prints out word counts stats for the entire manuscript.
+    printWordTotalCount(); 
   }
-
 }

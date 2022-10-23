@@ -8,17 +8,12 @@ import java.io.IOException;
 import disassembly.ManuscriptData;
 import util.Util;
 
+//In order to calculate using the Flesch formulas, I need the total number of sentences, total number of words, and
+// total number of syllables. This class determines those for every paragraph in the manuscript/chapter.
+
 public class ParagraphStats
 {
-//  int sentences;
-//  int words;
-//  int syllables;
-//  
-//  public ParagraphStats(String[][][] manuscript)
-//  {
-//    sentences = 
-//  }
-  
+  // These variables are used to determine Flesch scores on a manuscript level.
   static int totalSentences = 0;
   public static int totalWords = 0;
   static int totalSyllables = 0;
@@ -52,41 +47,10 @@ public class ParagraphStats
 
     return totalSyllables;
   }
-   
-//  public static int[][] calculateParagraphStats(String[][][] chapter)
-//  {
-//    int[][] paragraphStats = new int[chapter.length][3];
-//    
-//    for (int i = 0; i < paragraphStats.length; i++)
-//    {
-//      String[][] paragraph = chapter[i];
-//      int sentences = calculateTotalSentences(paragraph);
-//      totalSentences += sentences;
-//      paragraphStats[i][0] = sentences;
-//      
-//      int words = calculateTotalWords(paragraph);
-//      totalWords += words;
-//      paragraphStats[i][1] = words;
-//      
-//      int syllables = calculateTotalSyllables(paragraph);
-//      totalSyllables += syllables;
-//      paragraphStats[i][2] = syllables;
-//    }
-//
-//    return paragraphStats;
-//  }
-  
-//  public static double[][] determineReadability(int[][] paragraphStats){
-//    double[][] readabilityStats = new double[paragraphStats.length][2];
-//    
-//    for (int i = 0; i < readabilityStats.length; i++)
-//    {
-//      
-//    }
-//  }
   
   public static float[][] calculateParagraphStats(String[][][] chapter)
   {
+    // This array will hold readability scores for each paragraph.
     float[][] paragraphStats = new float[chapter.length][2];
     
     for (int i = 0; i < paragraphStats.length; i++)
@@ -107,25 +71,8 @@ public class ParagraphStats
 
     return paragraphStats;
   }
-//  
-//  public static float[][] calculateParagraphReadability(int[][] paragraphStats)
-//  {
-//    float[][] paragraphReadability = new float[paragraphStats.length][2];
-//    
-//    for (int i = 0; i < paragraphReadability.length; i++)
-//    {
-////      String[] paragraph = paragraphStats[i];
-//      int sentences = paragraphStats[i][0];
-//      int words = paragraphStats[i][0];
-//      int syllables = paragraphStats[i][0];
-//      
-//      paragraphReadability[i][0] = FleschKincaid.calculateFleschKincaid(sentences, words, syllables);
-//      paragraphReadability[i][1] = FleschKincaid.calculateFlesch(sentences, words, syllables);
-//    }
-//
-//    return paragraphReadability;
-//  }
   
+  // This method handles Flesch scores on the manuscript level instead of the paragraph level.
   public static float[] calculateTotalFleschKincaid()
   {
     float totalFleschKincaid =  FleschKincaid.calculateFleschKincaid(totalSentences, totalWords, totalSyllables);
@@ -134,22 +81,13 @@ public class ParagraphStats
     return fleschArray;
   }
 
-  
   public static void main(String[] args) throws IOException
   {
     String sampleChapter = TomSawyer.firstChapter;
     String[][][] chapter = ManuscriptData.createAllManuscriptData(sampleChapter);
-//
-//    String[][] sampleParagraph = chapter[22];
-//    
-//    System.out.println(calculateTotalSentences(sampleParagraph));
-//    System.out.println(calculateTotalWords(sampleParagraph));
-//    System.out.println(calculateTotalSyllables(sampleParagraph));
     
     float[][] stats = calculateParagraphStats(chapter);
     System.out.println(stats[22][0]);
     System.out.println(stats[22][1]);
-//    System.out.println(stats[22][2]);
   }
-
 }

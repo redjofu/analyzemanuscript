@@ -8,7 +8,8 @@ import util.Util;
 public class MapCreator
 {
   // These HashMaps store important data about individual words. Since many words are repeated throughout a manuscript,
-  // storing the information for specific words once allows me to store word info once and access it as needed.
+  // storing the information for specific words once allows me to store word info once and access it as needed. Beyond
+  // these four HashMaps, I'll eventually add others that keep track of other information, such as character count.
   public static HashMap<String, String> normalized = new HashMap<String, String>();
   public static HashMap<String, String> syllablePrep = new HashMap<String, String>();
   public static HashMap<String, Integer> syllables = new HashMap<String, Integer>();
@@ -52,19 +53,24 @@ public class MapCreator
       String syllablePrepped = SyllablePreparation.prepareForSyllables(normalizedWord);    
       addToMap(syllablePrep, word, syllablePrepped);
 
+      // I then use the syllablePrepped version of the word and use it to count syllables. I discovered that determining
+      // a word's syllable count is sometimes not a straightforward process and may even be debated among linguists in
+      // a few cases. There are some standard rules that can be determined programmatically that hold true in most
+      // cases, however, and I added in some edge-case checks that gives a pretty good estimate of what a word's 
+      // syllable count probably is.
       int syllableNum = Syllables.countSyllables(syllablePrepped);    
       addToMap(syllables, word, syllableNum);
-      
-//      System.out.println("Hello");
     }
+    // If a word has already been added to the HashMaps, I don't want them added again in most cases. However, the
+    // "count" HashMap is used to count the number of times a word has appeared in the entire manuscript. This else
+    // statement is used if the word has already been added to the HashMaps and merely checks what the current count is
+    // and increments it. Then that is used to update the "count" HashMap below.
     else
     {
       currentCount += count.get(word);
     }
     
-    
     addToMap(count, word, currentCount);
-
   }
 
   public static void main(String[] args)
@@ -73,9 +79,6 @@ public class MapCreator
     addWord("green");
     addWord("BILLy");
     addWord("BILLY");
-
-    
     System.out.println(count);
   }
-
 }

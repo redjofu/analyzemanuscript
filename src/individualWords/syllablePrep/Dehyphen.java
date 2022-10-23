@@ -3,10 +3,8 @@ package individualWords.syllablePrep;
 class Dehyphen
 {
 
-  private static String replaceMultipleHyphens(String wordToConvert)
-  {
-    String word = wordToConvert;
-    
+  private static String replaceMultipleHyphens(String word)
+  { 
     while (word.contains("--"))
     {
       word = word.replaceAll("--", "-");
@@ -15,10 +13,8 @@ class Dehyphen
     return word;
   }
   
-  static String dehyphen(String wordToConvert)
+  static String dehyphen(String word)
   {
-    String word = wordToConvert;
-    
     if (word.contains("-"))
     {
       word = replaceMultipleHyphens(word);
@@ -31,9 +27,7 @@ class Dehyphen
   public static void main(String[] args)
   {
     String test = "-double-u--double-u--double-u-";
-    
     String test2 = dehyphen(test);
-    
     System.out.println(test2);
   }
 }

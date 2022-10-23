@@ -7,7 +7,11 @@ public class Chapter
   
   private static String removeDuplicateLineBreaks(String chapter)
   {
-    return chapter.replace(newLineChar + newLineChar, newLineChar);
+    while (chapter.contains(newLineChar + newLineChar)) 
+    {
+      chapter = chapter.replace(newLineChar + newLineChar, newLineChar);
+    }
+    return chapter;
   }
   
   private static String addSpacesAroundDashes(String chapter)
@@ -21,11 +25,9 @@ public class Chapter
     return chapter;
   } 
   
-  private static String removeDuplicateSpaces(String chapterWithSpaces)
+  private static String removeDuplicateSpaces(String chapter)
   {
-    String chapter = chapterWithSpaces;
-    
-    while (chapter.indexOf("  ") >= 0)
+    while (chapter.contains("  "))
     {
       chapter = chapter.replace("  ", " ");
     }
@@ -33,56 +35,11 @@ public class Chapter
     return chapter;
   }
   
-  static String prepareChapter(String chapterToPrep)
+  static String prepareChapter(String chapter)
   {
-    String chapter = chapterToPrep;
     chapter = removeDuplicateLineBreaks(chapter);
     chapter = addSpacesAroundDashes(chapter);
-    if (chapter.contains(newLineChar + newLineChar))
-    {
-      chapter = removeDuplicateSpaces(chapter);
-      System.out.println("1");
-    }
-    
-    if (chapter.contains(newLineChar + newLineChar))
-    {
-      chapter = removeDuplicateSpaces(chapter);
-      System.out.println("2");
-    }
-    
-    
-    if (chapter.contains(newLineChar + newLineChar))
-    {
-      chapter = removeDuplicateSpaces(chapter);
-      System.out.println("3");
-    }
-    
-    
-    if (chapter.contains(newLineChar + newLineChar))
-    {
-      chapter = removeDuplicateSpaces(chapter);
-      System.out.println("4");
-    }
-    
-    
-    if (chapter.contains(newLineChar + newLineChar))
-    {
-      chapter = removeDuplicateSpaces(chapter);
-      System.out.println("5");
-    }
-    
-    if (chapter.contains(newLineChar + newLineChar))
-    {
-      chapter = removeDuplicateSpaces(chapter);
-      System.out.println("6");
-    }
-    
-    if (chapter.contains(newLineChar + newLineChar))
-    {
-      chapter = removeDuplicateSpaces(chapter);
-      System.out.println("7");
-    }
-    
+    chapter = removeDuplicateSpaces(chapter);
     
     return chapter;
   }

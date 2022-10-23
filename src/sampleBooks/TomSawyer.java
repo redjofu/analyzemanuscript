@@ -7,7 +7,7 @@ public class TomSawyer
     "\r\n" + 
     "\r\n" + 
     "\r\n" + 
-    "No answer.\r\n" + 
+    "No             answer.\r\n" + 
     "\r\n" + 
     "“TOM!”\r\n" + 
     "\r\n" + 

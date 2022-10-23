@@ -2,6 +2,7 @@ package readability;
 
 class FleschKincaid
 {
+  // The "Flesch-Kincaid grade level" formula
   static float calculateFleschKincaid(int sentencesNum, int wordsNum, int syllablesNum)
   {
     float sentences = sentencesNum;
@@ -13,6 +14,7 @@ class FleschKincaid
     return fleschKincaid;
   }
   
+  // The "Flesch reading ease" formula
   static float calculateFlesch(int sentencesNum, int wordsNum, int syllablesNum)
   {
     float sentences = sentencesNum;
@@ -28,7 +30,5 @@ class FleschKincaid
   {
     System.out.println(calculateFleschKincaid(15, 292, 357));
     System.out.println(calculateFlesch(15, 292, 357));
-
   }
-
 }
