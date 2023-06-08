@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package util;
 
 public class Util
@@ -28,21 +27,3 @@ public class Util
 
   }
 }
-=======
-package util;
-
-public class Util
-{
-  public static String lowerOrUpperCase(String word)
-  {
-    if (word.equals(word.toUpperCase()))
-    {
-      return word;
-    }
-    else
-    {
-      return word.toLowerCase();  
-    }
-  }
-}
->>>>>>> branch 'main' of https://github.com/redjofu/analyzemanuscript.git
