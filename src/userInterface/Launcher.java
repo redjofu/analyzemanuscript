@@ -18,8 +18,15 @@ public class Launcher
     JButton selectButton = new JButton("Open Manuscript PDF");
     selectButton.setBounds(100, 150, 300, 50);
     
+    JButton closeButton = new JButton("Close");
+    closeButton.setBounds(100, 220, 300, 50);
+    closeButton.addActionListener(e -> {
+      openScreen.dispose();
+    });
+    
     openScreen.add(openLabel);
     openScreen.add(selectButton);
+    openScreen.add(closeButton);
     
     openScreen.setSize(520, 350);
     openScreen.setLayout(null);
