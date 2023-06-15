@@ -2,13 +2,17 @@ package userInterface;
 
 import java.io.File;
 import javax.swing.*;
+
+import manuscript.Manuscript;
+import pdfHandler.PdfFile;
 import util.Constants;
 
 public class Launcher
 { 
   private static final String PROGRAM_NAME = Constants.PROGRAM_NAME.name;
-  private static FileSelector chooseFile;
+//  private static FileSelector fileSelector;
   private static File chosenFile;
+  private static PdfFile pdf;
   
   
   private static void createOpenScreen()
@@ -23,7 +27,16 @@ public class Launcher
     JButton selectButton = new JButton("Open Manuscript PDF");
     selectButton.setBounds(100, 150, 300, 50);
     selectButton.addActionListener(e -> {
-      openFileSelector(chooseFile);
+//      openFileSelector(chooseFile);
+//      fileSelector = new FileSelector();
+//      chosenFile = fileSelector.getFile();
+      chosenFile = new FileSelector().getFile();
+      pdf = new PdfFile(chosenFile);
+      Manuscript ms = new Manuscript(pdf);
+
+      
+      //TODO: Change JFrame to reflect what the app is doing, e.g. opening file, importing chapters, etc.
+      
     });
     
     JButton closeButton = new JButton("Close");
@@ -41,10 +54,11 @@ public class Launcher
     openScreen.setVisible(true);
   }
   
-  private static void openFileSelector(FileSelector chooseFile)
-  {
-    chooseFile = new FileSelector();
-  }
+//  private static void openFileSelector(FileSelector chooseFile)
+//  {
+//    chooseFile = new FileSelector();
+//    System.out.println("hi");
+//  }
 
   public static void main(String[] args)
   {

@@ -17,7 +17,7 @@ class FileSelector
     JFileChooser fileChooser = new JFileChooser();
     // It is possible to set the directory that opens. Default is documents and is fine, but this could be changed.
 //    fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-    fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("PDF Document", "pdf"));
+    fileChooser.setFileFilter(new FileNameExtensionFilter("PDF Document", "pdf"));
     
     int result = fileChooser.showOpenDialog(fileChooser);
     
