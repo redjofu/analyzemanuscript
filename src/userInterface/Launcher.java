@@ -21,31 +21,13 @@ public class Launcher
   private static PdfFile pdf;
   
   
-  private static void createOpenScreen()
+  private static void init()
   {
-    JFrame openScreen = new JFrame(PROGRAM_NAME);
-    
-    openScreen.setSize(520, 350);
-    openScreen.setLayout(new BorderLayout(10, 5));
-    openScreen.setLocationRelativeTo(null);
-    openScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    openScreen.setResizable(false);
-    openScreen.setVisible(true);
-    
-    JPanel panel = new JPanel();
-//    FlowLayout fLayout = new FlowLayout(FlowLayout.CENTER, 10, 10);
-//    BoxLayout layout = new BoxLayout(panel, BoxLayout.Y_AXIS);
-    GridLayout layout = new GridLayout(3, 1, 20, 20);
-    panel.setLayout(layout);
-    panel.setBorder(new EmptyBorder(20, 20, 20, 20)); // Margin for panel
-    panel.setBackground(Color.WHITE);
+    JFrame openScreen = createOpenScreen();
+    JPanel panel = createOpenScreenPanel();
     openScreen.add(panel);
-    
-    String openingText = "<html><p>Welcome to " + PROGRAM_NAME + "! " +
-      "To begin, please select a PDF file of your manuscript.</p></html>";
-    JLabel openLabel = new JLabel(openingText);
-    openLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-//    openLabel.setBounds(50, 50, 370, 50);
+    JLabel openLabel = createOpenScreenLabel();
+
     
     JButton selectButton = new JButton("Open Manuscript PDF");
     selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -80,10 +62,44 @@ public class Launcher
 //    chooseFile = new FileSelector();
 //    System.out.println("hi");
 //  }
+  
+  private static JFrame createOpenScreen()
+  {
+    JFrame openScreen = new JFrame(PROGRAM_NAME);
+    openScreen.setSize(520, 350);
+    openScreen.setLayout(new BorderLayout(10, 5));
+    openScreen.setLocationRelativeTo(null);
+    openScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    openScreen.setResizable(false);
+    openScreen.setVisible(true);
+    return openScreen;
+  }
+  
+  private static JPanel createOpenScreenPanel()
+  {
+    JPanel panel = new JPanel();
+//    FlowLayout fLayout = new FlowLayout(FlowLayout.CENTER, 10, 10);
+//    BoxLayout layout = new BoxLayout(panel, BoxLayout.Y_AXIS);
+    GridLayout layout = new GridLayout(3, 1, 20, 20);
+    panel.setLayout(layout);
+    panel.setBorder(new EmptyBorder(20, 20, 20, 20)); // Margin for panel
+    panel.setBackground(Color.WHITE);
+    return panel;
+  }
+  
+  private static JLabel createOpenScreenLabel()
+  {
+    String openingText = "<html><p>Welcome to " + PROGRAM_NAME + "! " +
+      "To begin, please select a PDF file of your manuscript.</p></html>";
+    JLabel openLabel = new JLabel(openingText);
+    openLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+//    openLabel.setBounds(50, 50, 370, 50);
+    return openLabel;
+  }
 
   public static void main(String[] args)
   {
-    createOpenScreen();
+    init();
 
   }
 }
