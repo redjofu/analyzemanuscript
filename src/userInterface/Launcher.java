@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.io.File;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import manuscript.Manuscript;
 import pdfHandler.PdfFile;
@@ -32,8 +34,10 @@ public class Launcher
     
     JPanel panel = new JPanel();
 //    FlowLayout fLayout = new FlowLayout(FlowLayout.CENTER, 10, 10);
-    BoxLayout layout = new BoxLayout(panel, BoxLayout.Y_AXIS);
+//    BoxLayout layout = new BoxLayout(panel, BoxLayout.Y_AXIS);
+    GridLayout layout = new GridLayout(3, 1, 20, 20);
     panel.setLayout(layout);
+    panel.setBorder(new EmptyBorder(20, 20, 20, 20)); // Margin for panel
     panel.setBackground(Color.WHITE);
     openScreen.add(panel);
     
