@@ -1,13 +1,11 @@
 package userInterface;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.io.File;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import manuscript.Manuscript;
 import pdfHandler.PdfFile;
@@ -16,6 +14,7 @@ import util.Constants;
 public class Launcher
 { 
   private static final String PROGRAM_NAME = Constants.PROGRAM_NAME.name;
+  private static final String APP_NAME_VERSION = PROGRAM_NAME + " – v" + Constants.VERSION.name;
 //  private static FileSelector fileSelector;
   private static File chosenFile;
   private static PdfFile pdf;
@@ -23,10 +22,12 @@ public class Launcher
   
   private static void init()
   {
-    JFrame openScreen = createOpenScreen();
-    JPanel panel = createOpenScreenPanel();
-    openScreen.add(panel);
+    MyJFrame openScreen = new MyJFrame(APP_NAME_VERSION, 520, 350, 3, true);
+    JPanel panel = openScreen.getMainPanel();
+//    openScreen.add(panel);
+    
     JLabel openLabel = createOpenScreenLabel();
+    panel.add(openLabel);
 
     
     JButton selectButton = new JButton("Open Manuscript PDF");
@@ -50,9 +51,9 @@ public class Launcher
 //    closeButton.setBounds(100, 220, 300, 50);
     closeButton.addActionListener(e -> {
       openScreen.dispose();
+//      System.exit(0);
     });
     
-    panel.add(openLabel);
     panel.add(selectButton);
     panel.add(closeButton);
   }
@@ -63,29 +64,23 @@ public class Launcher
 //    System.out.println("hi");
 //  }
   
-  private static JFrame createOpenScreen()
-  {
-    JFrame openScreen = new JFrame(PROGRAM_NAME);
-    openScreen.setSize(520, 350);
-    openScreen.setLayout(new BorderLayout(10, 5));
-    openScreen.setLocationRelativeTo(null);
-    openScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    openScreen.setResizable(false);
-    openScreen.setVisible(true);
-    return openScreen;
-  }
+//  private static JFrame createOpenScreen()
+//  {
+//    MyJFrame openScreen = new MyJFrame(APP_NAME_VERSION, 10, 5, 3);
+//    return openScreen;
+//  }
   
-  private static JPanel createOpenScreenPanel()
-  {
-    JPanel panel = new JPanel();
-//    FlowLayout fLayout = new FlowLayout(FlowLayout.CENTER, 10, 10);
-//    BoxLayout layout = new BoxLayout(panel, BoxLayout.Y_AXIS);
-    GridLayout layout = new GridLayout(3, 1, 20, 20);
-    panel.setLayout(layout);
-    panel.setBorder(new EmptyBorder(20, 20, 20, 20)); // Margin for panel
-    panel.setBackground(Color.WHITE);
-    return panel;
-  }
+//  private static JPanel createOpenScreenPanel()
+//  {
+////    JPanel panel = new JPanel();
+//////    FlowLayout fLayout = new FlowLayout(FlowLayout.CENTER, 10, 10);
+//////    BoxLayout layout = new BoxLayout(panel, BoxLayout.Y_AXIS);
+////    GridLayout layout = new GridLayout(3, 1, 20, 20);
+////    panel.setLayout(layout);
+////    panel.setBorder(new EmptyBorder(20, 20, 20, 20)); // Margin for panel
+////    panel.setBackground(Color.WHITE);
+////    return panel;
+//  }
   
   private static JLabel createOpenScreenLabel()
   {
