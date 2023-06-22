@@ -2,9 +2,12 @@ package userInterface;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -55,4 +58,17 @@ public class MyJFrame extends JFrame
   {
     return mainPanel;
   }
+  
+//  public void panelAdd(String labelText)
+//  {
+//    JLabel label = new JLabel(labelText);
+//    label.setAlignmentX(Component.CENTER_ALIGNMENT);
+//    mainPanel.add(label);
+//  }
+//  
+//  public void panelAdd(JButton button)
+//  {
+//    button.setAlignmentX(Component.CENTER_ALIGNMENT);
+//    mainPanel.add(button);
+//  }
 }
