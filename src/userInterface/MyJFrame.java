@@ -59,6 +59,25 @@ public class MyJFrame extends JFrame
     return mainPanel;
   }
   
+  public JLabel createLabel(String labelText)
+  {
+    JLabel label = new JLabel(labelText);
+    label.setAlignmentX(Component.CENTER_ALIGNMENT);
+    return label;
+  }
+  
+  public JButton createCloseButton()
+  {
+    JButton closeButton = new JButton("Close");
+    closeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+//    closeButton.setBounds(100, 220, 300, 50);
+    closeButton.addActionListener(e -> {
+      this.dispose();
+//      System.exit(0);
+    });
+    return closeButton;
+  }
+  
 //  public void panelAdd(String labelText)
 //  {
 //    JLabel label = new JLabel(labelText);

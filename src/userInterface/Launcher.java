@@ -33,10 +33,11 @@ public class Launcher
 //    createOpenScreenLabel(openScreen);
     
 //    JLabel openLabel = createOpenScreenLabel();
-    JLabel openLabel = createLabel(OPENING_TEXT);
+    JLabel openLabel = openScreen.createLabel(OPENING_TEXT);
     
     JButton selectButton = createSelectButton();
-    JButton closeButton = createCloseButton(openScreen);
+//    JButton closeButton = createCloseButton(openScreen);
+    JButton closeButton = openScreen.createCloseButton();
     
 
     
@@ -73,12 +74,12 @@ public class Launcher
 ////    return panel;
 //  }
   
-  private static JLabel createLabel(String labelText)
-  {
-    JLabel label = new JLabel(labelText);
-    label.setAlignmentX(Component.CENTER_ALIGNMENT);
-    return label;
-  }
+//  private static JLabel createLabel(String labelText)
+//  {
+//    JLabel label = new JLabel(labelText);
+//    label.setAlignmentX(Component.CENTER_ALIGNMENT);
+//    return label;
+//  }
   
 //  private static JLabel createOpenScreenLabel()
 //  {
@@ -116,13 +117,16 @@ public class Launcher
       }
       else
       {
-        MyJFrame pdfError = new MyJFrame("Error", 450, 250, 2);
-        JPanel panel = pdfError.getMainPanel();
-//        JLabel errorLabel = createPdfErrorLabel();
-        JLabel errorLabel = createLabel(PDF_ERROR_TEXT);
-        JButton closeErrorButton = createCloseButton(pdfError);
-        panel.add(errorLabel);
-        panel.add(closeErrorButton);
+//        MyJFrame pdfError = new MyJFrame("Error", 450, 250, 2);
+//        JPanel panel = pdfError.getMainPanel();
+////        JLabel errorLabel = createPdfErrorLabel();
+//        JLabel errorLabel = createLabel(PDF_ERROR_TEXT);
+//        JButton closeErrorButton = createCloseButton(pdfError);
+//        panel.add(errorLabel);
+//        panel.add(closeErrorButton);
+        
+        ErrorAlertFrame pdfError = new ErrorAlertFrame(PDF_ERROR_TEXT);
+        
       }
 
     }
@@ -136,17 +140,17 @@ public class Launcher
     return selectButton;
   }
   
-  private static JButton createCloseButton(MyJFrame openScreen)
-  {
-    JButton closeButton = new JButton("Close");
-    closeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-//    closeButton.setBounds(100, 220, 300, 50);
-    closeButton.addActionListener(e -> {
-      openScreen.dispose();
-//      System.exit(0);
-    });
-    return closeButton;
-  }
+//  private static JButton createCloseButton(MyJFrame openScreen)
+//  {
+//    JButton closeButton = new JButton("Close");
+//    closeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+////    closeButton.setBounds(100, 220, 300, 50);
+//    closeButton.addActionListener(e -> {
+//      openScreen.dispose();
+////      System.exit(0);
+//    });
+//    return closeButton;
+//  }
   
   private static boolean checkIfPDF(String fileName)
   {
