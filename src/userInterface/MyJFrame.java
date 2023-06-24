@@ -3,6 +3,7 @@ package userInterface;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -17,6 +18,9 @@ public class MyJFrame extends JFrame
    * The MyJFrame uses a set of JFrame options so that all JFrames in the application are similar.
    */
   private static final long serialVersionUID = -4123844101559078546L;
+  public static final Font LABEL_FONT = new Font("SansSerif", Font.PLAIN, 20);
+  public static final Font BUTTON_FONT = new Font("SansSerif", Font.BOLD, 24);
+  
   private JPanel mainPanel;
   private GridLayout panelLayout;
   private int margin = 20;
@@ -63,6 +67,7 @@ public class MyJFrame extends JFrame
   {
     JLabel label = new JLabel(labelText);
     label.setAlignmentX(Component.CENTER_ALIGNMENT);
+    label.setFont(LABEL_FONT);
     return label;
   }
   
@@ -70,7 +75,7 @@ public class MyJFrame extends JFrame
   {
     JButton closeButton = new JButton("Close");
     closeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-//    closeButton.setBounds(100, 220, 300, 50);
+    closeButton.setFont(BUTTON_FONT);
     closeButton.addActionListener(e -> {
       this.dispose();
 //      System.exit(0);
