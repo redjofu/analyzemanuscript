@@ -64,15 +64,17 @@ public class Launcher
           try // Just in case it has a .pdf extension but can't be read as an actual PDF file
           {
             pdf = new PdfFile(chosenFile);
-            // This might need to be moved elsewhere?
-            openScreen.dispose();
-            new CentralControl(pdf);
           }
-          catch (Exception e1)
+          catch (Exception ex)
           {
             disableOpenScreen();
             new ErrorAlertFrame(CANT_READ_ERROR_TEXT, ErrorAlertFrame.RETURN_TO_LAUNCHER);
-            e1.printStackTrace();
+            ex.printStackTrace();
+          }
+          if (pdf != null)
+          {
+            openScreen.dispose();
+            new CentralControl(pdf);
           }
         }
         else
