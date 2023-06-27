@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import analysis.CentralControl;
 import manuscript.Manuscript;
 import pdfHandler.PdfFile;
 import util.Constants;
@@ -23,6 +24,9 @@ public class Launcher
     "To begin, please select a PDF file of your manuscript.</p></html>"; 
   private static final String PDF_ERROR_TEXT = "<html><p>It appears you did not select a PDF file. You must select a " +
     "PDF file. Other file types are not supported at this time.</p></html>";
+  private static final String CANT_READ_ERROR_TEXT = "<html><p>The file has a .pdf extension, but it cannot be read " +
+    "as a PDF file for unknown reasons. Consider converting your manuscript to a PDF via a different " +
+    "method.</p></html>";
 
   private static MyJFrame openScreen;
   private static File chosenFile;
@@ -57,14 +61,24 @@ public class Launcher
         boolean isPdf = checkIfPDF(fileName);
         if (isPdf)
         {
-          openScreen.dispose();
-          pdf = new PdfFile(chosenFile);
-          Manuscript ms = new Manuscript(pdf); 
+          try // Just in case it has a .pdf extension but can't be read as an actual PDF file
+          {
+            pdf = new PdfFile(chosenFile);
+            // This might need to be moved elsewhere?
+            openScreen.dispose();
+            new CentralControl(pdf);
+          }
+          catch (Exception e1)
+          {
+            disableOpenScreen();
+            new ErrorAlertFrame(CANT_READ_ERROR_TEXT, ErrorAlertFrame.RETURN_TO_LAUNCHER);
+            e1.printStackTrace();
+          }
         }
         else
         {
           disableOpenScreen();
-          ErrorAlertFrame pdfError = new ErrorAlertFrame(PDF_ERROR_TEXT, ErrorAlertFrame.RETURN_TO_LAUNCHER);
+          new ErrorAlertFrame(PDF_ERROR_TEXT, ErrorAlertFrame.RETURN_TO_LAUNCHER);
         }
       }
     
