@@ -22,7 +22,7 @@ public class StatusBar
   
   public StatusBar()
   {
-    MyJFrame statusFrame = new MyJFrame(STATUS_BAR_TITLE, 500, 350, 3);
+    MyJFrame statusFrame = new MyJFrame(true, STATUS_BAR_TITLE, 500, 350, 3);
 //    statusFrame.setUndecorated(true);
 //    statusFrame.setDefaultCloseOperation(JFrame.);
     JPanel panel = statusFrame.getMainPanel();
@@ -30,7 +30,8 @@ public class StatusBar
     label = statusFrame.createLabel("Beginning analysis...");
     
     progressBar = new JProgressBar(0, 100);
-    progressBar.setValue(0);
+//    progressBar.setValue(0);
+    progressBar.setFont(MyJFrame.LABEL_FONT);
     progressBar.setStringPainted(true);
     
     JButton closeButton = statusFrame.createCloseButton();
@@ -40,18 +41,27 @@ public class StatusBar
     panel.add(closeButton);
   }
   
-  public void updateStatusBar(String latestStatus, int amountToIncrement)
+  public void update(String latestStatus, int amountToIncrement)
   {
-    currentStatus += amountToIncrement;
-    int percentageStatus = currentStatus / TOTAL_STATUS;
-    setLabel(latestStatus, percentageStatus);
+    int percentageStatus = determinePercentage(amountToIncrement); 
+    setLabel(latestStatus);
     progressBar.setValue(percentageStatus);
-    
   }
   
-  private void setLabel(String latestStatus, int percentageStatus)
+  private void setLabel(String latestStatus)
   {
-    String updatedStatus = "<html>Latest update: " + latestStatus + ". <br>" + percentageStatus + "% complete.</html>";
+    String updatedStatus = "<html>Latest update: " + latestStatus + ".</html>";
     label.setText(updatedStatus);
+  }
+  
+  private int determinePercentage(int amountToIncrement)
+  {
+    currentStatus += amountToIncrement;
+//    float currentFloat = (float)currentStatus;
+//    float totalFloat = (float)TOTAL_STATUS;
+//    float division = currentFloat / totalFloat;
+//    float percent = division * 100.0F;
+    float percent = ((float)currentStatus  / (float)TOTAL_STATUS) * 100.0F;
+    return (int)percent;
   }
 }

@@ -25,10 +25,10 @@ public class MyJFrame extends JFrame
   private GridLayout panelLayout;
   private int margin = 20;
   
-  public MyJFrame(String title, int width, int height, int rows, boolean closeApp)
+  public MyJFrame(boolean hideHeaderBar, String title, int width, int height, int rows, boolean closeApp)
   {
     super(title);
-//    this.setUndecorated(true);
+    this.setUndecorated(hideHeaderBar);
     this.setSize(width, height);
     this.setLayout(new BorderLayout(10, 5));
     this.setLocationRelativeTo(null);
@@ -47,6 +47,16 @@ public class MyJFrame extends JFrame
     mainPanel.setBackground(Color.WHITE);
     
     this.add(mainPanel);
+  }
+  
+  public MyJFrame(boolean hideHeaderBar, String title, int width, int height, int rows)
+  {
+    this(hideHeaderBar, title, width, height, rows, false);
+  }
+  
+  public MyJFrame(String title, int width, int height, int rows, boolean closeApp)
+  {
+    this(false, title, width, height, rows, closeApp);
   }
   
   public MyJFrame(String title, int width, int height)
