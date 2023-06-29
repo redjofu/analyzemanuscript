@@ -28,6 +28,7 @@ public class MyJFrame extends JFrame
   public MyJFrame(String title, int width, int height, int rows, boolean closeApp)
   {
     super(title);
+//    this.setUndecorated(true);
     this.setSize(width, height);
     this.setLayout(new BorderLayout(10, 5));
     this.setLocationRelativeTo(null);

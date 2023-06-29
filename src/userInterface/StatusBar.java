@@ -22,8 +22,9 @@ public class StatusBar
   
   public StatusBar()
   {
-    MyJFrame statusFrame = new MyJFrame(STATUS_BAR_TITLE, 300, 350, 3);
-    statusFrame.setUndecorated(true);
+    MyJFrame statusFrame = new MyJFrame(STATUS_BAR_TITLE, 500, 350, 3);
+//    statusFrame.setUndecorated(true);
+//    statusFrame.setDefaultCloseOperation(JFrame.);
     JPanel panel = statusFrame.getMainPanel();
     
     label = statusFrame.createLabel("Beginning analysis...");
