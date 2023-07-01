@@ -13,7 +13,7 @@ public class StatusBar
   private static final String STATUS_BAR_TITLE = "Status – " + PROGRAM_NAME;
   
   private static final int TOTAL_STATUS = 100;
-  private static int currentStatus = 0;
+  private int currentStatus = 0;
 //  private static float percentageStatus;
   
 //  private MyJFrame statusFrame;
@@ -63,5 +63,21 @@ public class StatusBar
 //    float percent = division * 100.0F;
     float percent = ((float)currentStatus  / (float)TOTAL_STATUS) * 100.0F;
     return (int)percent;
+  }
+  
+  // Used for JUnit testing
+  public int getProgressBarValue()
+  {
+    return progressBar.getValue();
+  }
+  
+  public String getStatusLabel()
+  {
+    return label.getText();
+  }
+  
+  public int getTotalStatus()
+  {
+    return TOTAL_STATUS;
   }
 }
