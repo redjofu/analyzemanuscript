@@ -10,6 +10,7 @@ public class Manuscript extends TextBlock
   // Originally was going to implement this as a singleton... decided I didn't want to anymore.
 //  private static final Manuscript instance = new Manuscript();
   private String msText;
+  private int index = 0;
   
   // TODO: Allow the user to customize what separates chapters. Foreign languages? Other specific words?
   private String[] chapterVariations = {
@@ -39,7 +40,24 @@ public class Manuscript extends TextBlock
     // Will delete this, just used for experimenting
     String chapter1;
     String chapter2;
-    isTextBeforeFirstChapter();
+    
+    // If there is text before the first chapter, it needs to be in position 0. Otherwise that spot will be null.
+    if (isTextBeforeFirstChapter())
+    {
+      String chapter = msText.substring(index, findNextChapterIndex());
+      chapters.add(chapter);
+    }
+    else
+    {
+      chapters.add(null);
+    }
+    
+    while (msText.length() > 0)
+    {
+      
+    }
+    
+    
     chapter1 = msText.substring(0,msText.indexOf("Chapter"));
     msText = msText.substring(msText.indexOf("Chapter"));
     System.out.println("now what?");
