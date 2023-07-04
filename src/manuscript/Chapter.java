@@ -1,7 +1,6 @@
 package manuscript;
-import sampleBooks.*;
 
-public class Chapter
+public class Chapter extends TextBlock
 {
   private static String NEW_LINE_CHAR = "\r\n";
   

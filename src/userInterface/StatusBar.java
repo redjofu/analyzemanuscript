@@ -79,5 +79,6 @@ public class StatusBar
   public int getTotalStatus()
   {
     return TOTAL_STATUS;
+//    return 50;
   }
 }

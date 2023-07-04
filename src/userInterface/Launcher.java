@@ -83,9 +83,6 @@ public class Launcher
           new ErrorAlertFrame(PDF_ERROR_TEXT, ErrorAlertFrame.RETURN_TO_LAUNCHER);
         }
       }
-    
-    //TODO: Change JFrame to reflect what the app is doing, e.g. opening file, importing chapters, etc.
-    
     });
     
     return selectButton;

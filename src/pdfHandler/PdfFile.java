@@ -16,10 +16,8 @@ public class PdfFile
   
   private String getPdfText(File file)
   {
-//    PDDocument document;
     try
     {
-//      document = PDDocument.load(file);
       PDDocument document = PDDocument.load(file);
       PDFTextStripper pdfStripper = new PDFTextStripper();
       String pdfText = pdfStripper.getText(document);
