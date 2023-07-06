@@ -43,18 +43,20 @@ public class Manuscript extends TextBlock
     
     // If there is text before the first chapter, it needs to be in position 0. Otherwise that spot will be null.
     if (isTextBeforeFirstChapter())
-    {
-      String chapter = msText.substring(index, findNextChapterIndex());
-      chapters.add(chapter);
+    {;
+      chapters.add(addNextChapter());
     }
     else
     {
       chapters.add(null);
     }
     
-    while (msText.length() > 0)
+//    while (index < msText.length())
+    int count = 0;
+    while (count < 6)
     {
-      
+      chapters.add(addNextChapter());
+      count++;
     }
     
     
@@ -89,6 +91,14 @@ public class Manuscript extends TextBlock
       }
     }
     return indexNum;
+  }
+  
+  private String addNextChapter()
+  {
+    int nextIndex = findNextChapterIndex();
+    String chapter = msText.substring(index, nextIndex);
+    index = nextIndex;
+    return chapter;
   }
   
 //  private void setMsText(String text)
