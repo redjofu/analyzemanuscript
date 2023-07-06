@@ -39,6 +39,8 @@ public class StatusBar
     panel.add(label);
     panel.add(progressBar);
     panel.add(closeButton);
+    
+    statusFrame.toFront();
   }
   
   public void update(String latestStatus, int amountToIncrement)
