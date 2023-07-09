@@ -67,6 +67,11 @@ public class StatusBar
     return (int)percent;
   }
   
+  public void close()
+  {
+    // how to close jframe?
+  }
+  
   // Used for JUnit testing
   public int getProgressBarValue()
   {

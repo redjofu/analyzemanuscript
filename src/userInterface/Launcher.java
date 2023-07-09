@@ -55,11 +55,10 @@ public class Launcher
     selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     selectButton.setFont(MyJFrame.BUTTON_FONT);
     selectButton.addActionListener(e -> {
-      StatusBar statusBar2 = new StatusBar();
-      statusBar2.update("Hello, hello", 15);
+      StatusBar statusBar = new StatusBar();
+      statusBar.update("Begun file selection process", 1);
       chosenFile = new FileSelector().getFile();
       if (chosenFile != null) {
-        statusBar2.update("Good-bye, good-bye", 13);
         String fileName = chosenFile.getName();
         boolean isPdf = checkIfPDF(fileName);
         if (isPdf)
@@ -82,6 +81,7 @@ public class Launcher
         }
         else
         {
+          // Close Status Bar here
           disableOpenScreen();
           new ErrorAlertFrame(PDF_ERROR_TEXT, ErrorAlertFrame.RETURN_TO_LAUNCHER);
         }
