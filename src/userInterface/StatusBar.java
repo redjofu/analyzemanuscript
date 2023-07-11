@@ -19,6 +19,7 @@ public class StatusBar
 //  private MyJFrame statusFrame;
   private JLabel label;
   private JProgressBar progressBar;
+  private JButton closeButton;
   
   public StatusBar()
   {
@@ -34,7 +35,7 @@ public class StatusBar
     progressBar.setFont(MyJFrame.LABEL_FONT);
     progressBar.setStringPainted(true);
     
-    JButton closeButton = statusFrame.createCloseButton();
+    closeButton = statusFrame.createCloseButton();
     
     panel.add(label);
     panel.add(progressBar);
@@ -69,7 +70,7 @@ public class StatusBar
   
   public void close()
   {
-    // how to close jframe?
+    closeButton.doClick();
   }
   
   // Used for JUnit testing

@@ -8,9 +8,9 @@ import pdfHandler.PdfFile;
 
 public class CentralControl
 {
-  public CentralControl(PdfFile pdf)
+  public CentralControl(StatusBar statusBar, PdfFile pdf)
   {
-    StatusBar statusBar = new StatusBar();
+//    statusBar = new StatusBar();
 //    try
 //    {
 //      TimeUnit.SECONDS.sleep(5);

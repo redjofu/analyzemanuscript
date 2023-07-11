@@ -76,15 +76,23 @@ public class Launcher
           if (pdf != null)
           {
             openScreen.dispose();
-            new CentralControl(pdf);
+            new CentralControl(statusBar, pdf);
+          }
+          else
+          {
+            statusBar.close();
           }
         }
         else
         {
-          // Close Status Bar here
+          statusBar.close();
           disableOpenScreen();
           new ErrorAlertFrame(PDF_ERROR_TEXT, ErrorAlertFrame.RETURN_TO_LAUNCHER);
         }
+      }
+      else
+      {
+        statusBar.close();
       }
     });
     
