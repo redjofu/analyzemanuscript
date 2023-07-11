@@ -16,7 +16,6 @@ public class StatusBar
   private int currentStatus = 0;
 //  private static float percentageStatus;
   
-//  private MyJFrame statusFrame;
   private JLabel label;
   private JProgressBar progressBar;
   private JButton closeButton;
