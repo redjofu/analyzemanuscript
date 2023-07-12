@@ -1,6 +1,4 @@
-/test/
-/userInterface/
+/individualWords/
 /pdfHandler/
-/manuscript/
-/disassembly/
-/analysis/
+/userInterface/
+/util/

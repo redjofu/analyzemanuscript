@@ -37,14 +37,4 @@ public class ErrorAlertFrame extends MyJFrame
   {
     this(errorText, 0);
   }
-  
-//  private void returnToLauncher()
-//  {
-//    this.addActionListener(e -> {
-//      this.dispose();
-//  });
-//  }
-  
-  
-
 }
