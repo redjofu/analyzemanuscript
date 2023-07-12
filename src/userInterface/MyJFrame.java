@@ -89,21 +89,7 @@ public class MyJFrame extends JFrame
     closeButton.setFont(BUTTON_FONT);
     closeButton.addActionListener(e -> {
       this.dispose();
-//      System.exit(0);
     });
     return closeButton;
   }
-  
-//  public void panelAdd(String labelText)
-//  {
-//    JLabel label = new JLabel(labelText);
-//    label.setAlignmentX(Component.CENTER_ALIGNMENT);
-//    mainPanel.add(label);
-//  }
-//  
-//  public void panelAdd(JButton button)
-//  {
-//    button.setAlignmentX(Component.CENTER_ALIGNMENT);
-//    mainPanel.add(button);
-//  }
 }
