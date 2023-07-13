@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import pdfHandler.PdfFile;
 import sampleBooks.*;
 import userInterface.StatusBar;
+import util.Util;
 
 
 public class Manuscript extends TextBlock
 {
   // Originally was going to implement this as a singleton... decided I didn't want to anymore.
 //  private static final Manuscript instance = new Manuscript();
-  private static final String NEW_LINE_CHAR = "\r\n";
+  static final String NEW_LINE_CHAR = "\r\n";
   
   private String msText;
   private int index = 0;
@@ -47,9 +48,10 @@ public class Manuscript extends TextBlock
     
     
     // TODO: This ArrayList should be a "Chapter" object once I get that set up.
-    ArrayList<String> chapters = new ArrayList();
+    ArrayList<Chapter> chapters = new ArrayList();
 
     // If there is text before the first chapter, it needs to be in position 0. Otherwise that spot will be null.
+    // This also means that [1] is actually chapter 1, [2] is actually chapter 2, etc.
     if (isTextBeforeFirstChapter())
     {;
       chapters.add(addNextChapter());
@@ -98,20 +100,23 @@ public class Manuscript extends TextBlock
     return indexNum;
   }
   
-  private String addNextChapter()
+  private Chapter addNextChapter()
   {
     int nextIndex = findNextChapterIndex(false);
-    String chapter;
-    if (nextIndex != -1)
-    {
-      chapter = msText.substring(index, nextIndex);
-    }
-    else // For the final chapter
-    {
-      chapter = msText.substring(index);
-    }
+    String chapter = Util.addNextPassage(msText, index, nextIndex);
+    
+    
+//    String chapter;
+//    if (nextIndex != -1)
+//    {
+//      chapter = msText.substring(index, nextIndex);
+//    }
+//    else // For the final chapter
+//    {
+//      chapter = msText.substring(index);
+//    }
     index = nextIndex;
-    return chapter;
+    return new Chapter(chapter);
   }
   
   private void removeDuplicateLineBreaks()

@@ -5,6 +5,7 @@ public class Chapter
 {
   private static String newLineChar = "\r\n";
   
+  // MOVED to Manuscript.java
   private static String removeDuplicateLineBreaks(String chapter)
   {
     while (chapter.contains(newLineChar + newLineChar)) 
@@ -14,6 +15,7 @@ public class Chapter
     return chapter;
   }
   
+  // MOVED to Manuscript.java
   private static String addSpacesAroundDashes(String chapter)
   {
     // Replace em dash with en dash
@@ -25,6 +27,7 @@ public class Chapter
     return chapter;
   } 
   
+  // MOVED to Manuscript.java
   private static String removeDuplicateSpaces(String chapter)
   {
     while (chapter.contains("  "))

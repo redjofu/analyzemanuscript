@@ -55,8 +55,8 @@ public class Launcher
     selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     selectButton.setFont(MyJFrame.BUTTON_FONT);
     selectButton.addActionListener(e -> {
-      StatusBar statusBar = new StatusBar();
-      statusBar.update("Begun file selection process", 1);
+//      StatusBar statusBar = new StatusBar();
+//      statusBar.update("Begun file selection process", 1);
       chosenFile = new FileSelector().getFile();
       if (chosenFile != null) {
         String fileName = chosenFile.getName();
@@ -76,23 +76,23 @@ public class Launcher
           if (pdf != null)
           {
             openScreen.dispose();
-            new CentralControl(statusBar, pdf);
+            new CentralControl(pdf);
           }
           else
           {
-            statusBar.close();
+//            statusBar.close();
           }
         }
         else
         {
-          statusBar.close();
+//          statusBar.close();
           disableOpenScreen();
           new ErrorAlertFrame(PDF_ERROR_TEXT, ErrorAlertFrame.RETURN_TO_LAUNCHER);
         }
       }
       else
       {
-        statusBar.close();
+//        statusBar.close();
       }
     });
     

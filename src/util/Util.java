@@ -1,5 +1,7 @@
 package util;
 
+import manuscript.Chapter;
+
 public class Util
 {
   
@@ -17,6 +19,21 @@ public class Util
     {
       return word.toLowerCase();  
     }
+  }
+  
+  public static String addNextPassage(String text, int index, int nextIndex)
+  {
+    String passage;
+    if (nextIndex != -1)
+    {
+      passage = text.substring(index, nextIndex);
+    }
+    else // For the final chapter
+    {
+      passage = text.substring(index);
+    }
+    index = nextIndex;
+    return passage;
   }
   
   public static void main(String[] args)
