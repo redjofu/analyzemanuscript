@@ -17,7 +17,7 @@ public class Manuscript extends TextBlock
   private int index = 0;
   
   // TODO: Allow the user to customize what separates chapters. Foreign languages? Other specific words?
-  private String[] chapterVariations = {
+  private static String[] chapterVariations = {
     "Chapter",
     "chapter",
     "Prologue",
@@ -44,8 +44,7 @@ public class Manuscript extends TextBlock
     addSpacesAroundDashes();
     removeDuplicateSpaces();
     status.update("Extra spaces removed from manuscript", 1);
-    
-    
+
     
     // TODO: This ArrayList should be a "Chapter" object once I get that set up.
     ArrayList<Chapter> chapters = new ArrayList();

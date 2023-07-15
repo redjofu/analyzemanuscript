@@ -21,6 +21,38 @@ public class Util
     }
   }
   
+  public int findNextPassageIndex(String text, int index, String breakingPoint)
+  {
+    return findNextPassageIndex(text, index, breakingPoint, false);
+  }
+  
+  public int findNextPassageIndex(String text, int index, String[] breakingPoints)
+  {
+    return findNextPassageIndex(text, index, breakingPoints, false);
+  }
+  
+  public int findNextPassageIndex(String text, int index, String breakingPoint, boolean isFirstSearch)
+  {
+    String[] breakingPoints = {breakingPoint};
+    return findNextPassageIndex(text, index, breakingPoints, isFirstSearch);
+  }
+  
+  public int findNextPassageIndex(String text, int index, String[] breakingPoints, boolean isFirstSearch)
+  {
+    int indexNum = -1;
+    int startingPoint = isFirstSearch ? index : index + 1;
+    // Checks each variation of how a chapter might be divided
+    for (String variation : breakingPoints)
+    {
+      int currentIndex = text.indexOf(variation, startingPoint);
+      if (currentIndex > -1 && (currentIndex < indexNum || indexNum < 0))
+      {
+        indexNum = currentIndex;
+      }
+    }
+    return indexNum;
+  }
+  
   public static String addNextPassage(String text, int index, int nextIndex)
   {
     String passage;
