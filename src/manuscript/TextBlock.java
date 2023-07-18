@@ -1,6 +1,10 @@
 package manuscript;
 
+import util.PassageIndex;
+
 abstract class TextBlock
 {
-  private int wordCount;
+  int wordCount;
+  PassageIndex index = new PassageIndex();
+  static final String NEW_LINE_CHAR = "\r\n";
 }
