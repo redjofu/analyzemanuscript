@@ -15,8 +15,6 @@ public class Manuscript extends TextBlock
 //  static final String NEW_LINE_CHAR = "\r\n";
   
   private String msText;
-//  private int index = 0;
-//  private PassageIndex index = new PassageIndex();
   
   // TODO: Allow the user to customize what separates chapters. Foreign languages? Other specific words?
   private static String[] chapterVariations = {
