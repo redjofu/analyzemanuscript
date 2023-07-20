@@ -8,6 +8,7 @@ public class Chapter extends TextBlock
 {
 //  private static String NEW_LINE_CHAR = Manuscript.NEW_LINE_CHAR;
   public static String PARAGRAPH_SYMBOL = "U+00B6"; // Same as Unicode
+  public static String PAGE_SYMBOL = "U+21A1";
   
   public Chapter(String chapterText)
   {

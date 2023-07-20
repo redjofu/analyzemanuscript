@@ -23,6 +23,9 @@ public class PdfFile
       PDDocument document = PDDocument.load(file);
       PDFTextStripper pdfStripper = new PDFTextStripper();
       pdfStripper.setParagraphStart(Chapter.PARAGRAPH_SYMBOL);
+      pdfStripper.setPageEnd(Chapter.PAGE_SYMBOL);
+      pdfStripper.setIndentThreshold(1.0f);
+      pdfStripper.setDropThreshold(6.0f);
       // TODO: Figure out how to split into actual paragraphs, not going by line breaks. This inserts a paragraph
       // symbol, but what about page breaks? It can't figure that out.
       String pdfText = pdfStripper.getText(document);

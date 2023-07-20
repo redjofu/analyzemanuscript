@@ -119,6 +119,10 @@ public class Manuscript extends TextBlock
   
   private void removeDuplicateLineBreaks()
   {
+    while (msText.contains(NEW_LINE_CHAR + " "))
+    {
+      msText = msText.replace(NEW_LINE_CHAR + " ", NEW_LINE_CHAR);
+    }
     while (msText.contains(NEW_LINE_CHAR + NEW_LINE_CHAR)) 
     {
       msText = msText.replace(NEW_LINE_CHAR + NEW_LINE_CHAR, NEW_LINE_CHAR);
