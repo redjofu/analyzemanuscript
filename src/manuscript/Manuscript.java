@@ -38,8 +38,11 @@ public class Manuscript extends TextBlock
   public Manuscript(StatusBar status, PdfFile pdf) 
   {
     msText = pdf.getText();
+    System.out.println(msText.length());
     status.update("Text extracted from PDF", 1);
     
+    // TODO: Move to more granular. If spaces are added around dashes, and a dash is at beginning of line, could confuse
+    // system into thinking it's an indent.
     removeDuplicateLineBreaks();
     addSpacesAroundDashes();
     removeDuplicateSpaces();
@@ -57,7 +60,7 @@ public class Manuscript extends TextBlock
     {
       chapters.add(null);
     }
-    
+
     while (index.get() > -1) // Index is set in the addNextChapter method. It becomes -1 on the last chapter.
     {
       chapters.add(new Chapter(Util.getNextPassage(msText, index, chapterVariations)));
