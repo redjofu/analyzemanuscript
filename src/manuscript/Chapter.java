@@ -12,9 +12,10 @@ public class Chapter extends TextBlock
   public static String PAGE_SYMBOL = "U+21A1"; // Same as Unicode for "DOWNWARDS TWO HEADED ARROW"
   
   /*
-   * PARAGRAPH_SYMBOL == NEW_LINE_CHAR // Double spaced
-   * PARAGRAPH_SYMBOL + " " // Indented
-   * PARAGRAPH_SYMBOL == PAGE_SYMBOL // Couldn't determine paragraphs at all
+   * # of PARAGRAPH_SYMBOL == # of NEW_LINE_CHAR // Double spaced, check for space after PARAGRAPH_SYMBOL and text
+   * PARAGRAPH_SYMBOL + " " // Indented line, probably start of new paragraph
+   * # of PARAGRAPH_SYMBOL == # of PAGE_SYMBOL // Couldn't determine paragraphs at all, use alternate method
+   * NEW_LINE_CHAR + NEW_LINE_CHAR // Double return, indicates paragraph
    */
   
   public Chapter(String chapterText)

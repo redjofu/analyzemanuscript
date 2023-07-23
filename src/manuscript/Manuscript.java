@@ -43,9 +43,9 @@ public class Manuscript extends TextBlock
     
     // TODO: Move to more granular. If spaces are added around dashes, and a dash is at beginning of line, could confuse
     // system into thinking it's an indent.
-    removeDuplicateLineBreaks();
-    addSpacesAroundDashes();
-    removeDuplicateSpaces();
+//    removeDuplicateLineBreaks();
+//    addSpacesAroundDashes();
+//    removeDuplicateSpaces();
     status.update("Extra spaces removed from manuscript", 1);
 
     ArrayList<Chapter> chapters = new ArrayList();
