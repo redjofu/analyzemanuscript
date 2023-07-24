@@ -16,6 +16,8 @@ public class Chapter extends TextBlock
    * PARAGRAPH_SYMBOL + " " // Indented line, probably start of new paragraph
    * # of PARAGRAPH_SYMBOL == # of PAGE_SYMBOL // Couldn't determine paragraphs at all, use alternate method
    * NEW_LINE_CHAR + NEW_LINE_CHAR // Double return, indicates paragraph
+   * 
+   * TODO: First determine which method of paragraph parsing is needed (method 1). Then parse (method 2).
    */
   
   public Chapter(String chapterText)
