@@ -132,6 +132,14 @@ public class Util
     return passage;
   }
   
+  public static int countChar(String fullText, String textToCount)
+  {
+    int numCharInText = fullText.length();
+    int numAfterReplace = fullText.replace(textToCount,"").length();
+    
+    return ((numCharInText - numAfterReplace) / textToCount.length()) + 1;
+  }
+  
   
   
 //  public static void main(String[] args)

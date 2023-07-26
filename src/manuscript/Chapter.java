@@ -1,6 +1,7 @@
 package manuscript;
 
 import java.util.ArrayList;
+//import commons.lang.StringUtils;
 
 import util.Util;
 
@@ -10,6 +11,8 @@ public class Chapter extends TextBlock
   public static String PARAGRAPH_SYMBOL = "U+00B6"; // Same as Unicode for "PILCROW SIGN" (paragraph symbol)
 //  public static String END_PARAGRAPH_SYMBOL = "U+204B"; // Same as Unicode for "REVERSED PILCROW SIGN"
   public static String PAGE_SYMBOL = "U+21A1"; // Same as Unicode for "DOWNWARDS TWO HEADED ARROW"
+  
+  private static String paragraphType; // This is set once per manuscript and then can be reused for future chapters. 
   
   /*
    * # of PARAGRAPH_SYMBOL == # of NEW_LINE_CHAR // Double spaced, check for space after PARAGRAPH_SYMBOL and text
@@ -35,6 +38,15 @@ public class Chapter extends TextBlock
       paragraphs.add(new String(Util.getNextPassage(chapterText, index, PARAGRAPH_SYMBOL)));
     }
 //    status.update("Divided manuscript into individual chapters", 1);
+  }
+  
+  private String determineParagraphType(String chapterText)
+  {
+//    int numNewLine = StringUtils.countMatches(chapterText, NEW_LINE_CHAR);
+    int numNewLine = Util.countChar(chapterText, NEW_LINE_CHAR);
+    int numParagraphSymbol = Util.countChar(chapterText, PARAGRAPH_SYMBOL);
+    
+    return "text";
   }
   
 }
