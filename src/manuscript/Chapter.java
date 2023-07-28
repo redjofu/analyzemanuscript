@@ -14,6 +14,7 @@ public class Chapter extends TextBlock
   
   private static int paragraphType; // This is set once per manuscript and then can be reused for future chapters.
   private static final int DOUBLE_SPACED = 1;
+  private static final int CANT_DETERMINE = 2;
   
   /*
    * # of PARAGRAPH_SYMBOL == # of NEW_LINE_CHAR // Double spaced, check for space after PARAGRAPH_SYMBOL and text
@@ -43,7 +44,6 @@ public class Chapter extends TextBlock
   
   private int determineParagraphType(String chapterText)
   {
-//    int numNewLine = StringUtils.countMatches(chapterText, NEW_LINE_CHAR);
     int numNewLine = Util.countChar(chapterText, NEW_LINE_CHAR);
     int numParagraphSymbol = Util.countChar(chapterText, PARAGRAPH_SYMBOL);
     int numPageSymbol = Util.countChar(chapterText, PAGE_SYMBOL);
