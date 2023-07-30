@@ -12,9 +12,12 @@ public class Chapter extends TextBlock
 //  public static String END_PARAGRAPH_SYMBOL = "U+204B"; // Same as Unicode for "REVERSED PILCROW SIGN"
   public static String PAGE_SYMBOL = "U+21A1"; // Same as Unicode for "DOWNWARDS TWO HEADED ARROW"
   
+  // Paragraph determination types
   private static int paragraphType; // This is set once per manuscript and then can be reused for future chapters.
-  private static final int DOUBLE_SPACED = 1;
-  private static final int CANT_DETERMINE = 2;
+  private static final int USE_PARAGRAPH_SYMBOL = 0;
+  private static final int DOUBLE_SPACED_INDENT = 1;
+  private static final int DOUBLE_SPACED_CANT_DETERMINE = 2;
+  private static final int CANT_DETERMINE = 3;
   
   /*
    * # of PARAGRAPH_SYMBOL == # of NEW_LINE_CHAR // Double spaced, check for space after PARAGRAPH_SYMBOL and text
@@ -42,18 +45,27 @@ public class Chapter extends TextBlock
 //    status.update("Divided manuscript into individual chapters", 1);
   }
   
-  private int determineParagraphType(String chapterText)
+  private void determineParagraphType(String chapterText)
   {
     int numNewLine = Util.countChar(chapterText, NEW_LINE_CHAR);
     int numParagraphSymbol = Util.countChar(chapterText, PARAGRAPH_SYMBOL);
     int numPageSymbol = Util.countChar(chapterText, PAGE_SYMBOL);
     
-    if ((numParagraphSymbol == numNewLine) && (chapterText.indexOf(PARAGRAPH_SYMBOL + " ") > -1))
+    if (numParagraphSymbol == numNewLine)
     {
-      
+      if (chapterText.indexOf(PARAGRAPH_SYMBOL + " ") > -1)
+      {
+        paragraphType = DOUBLE_SPACED_INDENT;  
+      }
+      else
+      {
+        paragraphType = DOUBLE_SPACED_CANT_DETERMINE;
+      }
     }
-    
-    return 1;
+    else if (numParagraphSymbol == numPageSymbol)
+    {
+      paragraphType = CANT_DETERMINE;
+    }
   }
   
 }
