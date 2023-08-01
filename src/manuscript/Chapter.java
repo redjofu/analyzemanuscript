@@ -14,10 +14,10 @@ public class Chapter extends TextBlock
   
   // Paragraph determination types
   private static int paragraphType; // This is set once per manuscript and then can be reused for future chapters.
-  private static final int USE_PARAGRAPH_SYMBOL = 0;
-  private static final int DOUBLE_SPACED_INDENT = 1;
-  private static final int DOUBLE_SPACED_CANT_DETERMINE = 2;
-  private static final int CANT_DETERMINE = 3;
+  private static final int USE_PARAGRAPH_SYMBOL = 1;
+  private static final int DOUBLE_SPACED_INDENT = 2;
+  private static final int DOUBLE_SPACED_CANT_DETERMINE = 3;
+  private static final int CANT_DETERMINE = 4;
   
   /*
    * # of PARAGRAPH_SYMBOL == # of NEW_LINE_CHAR // Double spaced, check for space after PARAGRAPH_SYMBOL and text
@@ -32,7 +32,14 @@ public class Chapter extends TextBlock
   {
  // TODO: This ArrayList should be a "Paragraph" object once I get that set up.
     ArrayList<String> paragraphs = new ArrayList();
-    System.out.println(chapterText);
+    
+    System.out.println(paragraphType);
+    if (paragraphType == 0)
+    {
+      determineParagraphType(chapterText);
+    }
+    
+    
     while (index.get() > -1) // Index is set in the addNextChapter method. It becomes -1 on the last chapter.
     {
       /* In PDFs, actual NEW_LINE_CHAR has to be doubled because PDFs put in hard breaks where there are actual breaks in the PDF but
@@ -65,6 +72,10 @@ public class Chapter extends TextBlock
     else if (numParagraphSymbol == numPageSymbol)
     {
       paragraphType = CANT_DETERMINE;
+    }
+    else
+    {
+      paragraphType = USE_PARAGRAPH_SYMBOL;
     }
   }
   
