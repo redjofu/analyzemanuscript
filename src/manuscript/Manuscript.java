@@ -46,14 +46,18 @@ public class Manuscript extends TextBlock
 //    removeDuplicateLineBreaks();
 //    addSpacesAroundDashes();
 //    removeDuplicateSpaces();
-    status.update("Extra spaces removed from manuscript", 1);
+//    status.update("Extra spaces removed from manuscript", 1);
 
     ArrayList<Chapter> chapters = new ArrayList();
 
     // If there is text before the first chapter, it needs to be in position 0. Otherwise that spot will be null.
     // This also means that [1] is actually chapter 1, [2] is actually chapter 2, etc.
+    
     if (isTextBeforeFirstChapter())
-    {;
+    {
+      String firstTextSet = Util.getNextPassage(msText, index, chapterVariations);
+      String textCopy = firstTextSet;
+      textCopy.replace(Chapter.PARAGRAPH_SYMBOL, "");
       chapters.add(new Chapter(Util.getNextPassage(msText, index, chapterVariations)));
     }
     else

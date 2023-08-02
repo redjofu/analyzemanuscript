@@ -33,7 +33,6 @@ public class Chapter extends TextBlock
  // TODO: This ArrayList should be a "Paragraph" object once I get that set up.
     ArrayList<String> paragraphs = new ArrayList();
     
-    System.out.println(paragraphType);
     if (paragraphType == 0)
     {
       determineParagraphType(chapterText);
@@ -77,6 +76,8 @@ public class Chapter extends TextBlock
     {
       paragraphType = USE_PARAGRAPH_SYMBOL;
     }
+    
+    System.out.println("paragraphType: " + paragraphType);
   }
   
 }
