@@ -56,9 +56,16 @@ public class Manuscript extends TextBlock
     if (isTextBeforeFirstChapter())
     {
       String firstTextSet = Util.getNextPassage(msText, index, chapterVariations);
-      String textCopy = firstTextSet;
-      textCopy.replace(Chapter.PARAGRAPH_SYMBOL, "");
-      chapters.add(new Chapter(Util.getNextPassage(msText, index, chapterVariations)));
+      String textCopy = firstTextSet.replace(Chapter.PARAGRAPH_SYMBOL, "").replace(Chapter.PAGE_SYMBOL, "");
+      if (textCopy == "")
+      {
+        chapters.add(null);
+      }
+      else
+      {
+        chapters.add(new Chapter(firstTextSet));
+      }
+//      chapters.add(new Chapter(Util.getNextPassage(msText, index, chapterVariations)));
     }
     else
     {

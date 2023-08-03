@@ -16,8 +16,9 @@ public class Chapter extends TextBlock
   private static int paragraphType; // This is set once per manuscript and then can be reused for future chapters.
   private static final int USE_PARAGRAPH_SYMBOL = 1;
   private static final int DOUBLE_SPACED_INDENT = 2;
-  private static final int DOUBLE_SPACED_CANT_DETERMINE = 3;
-  private static final int CANT_DETERMINE = 4;
+  private static final int DOUBLE_LINE_BREAK = 3;
+  private static final int DOUBLE_SPACED_CANT_DETERMINE = 4;
+  private static final int CANT_DETERMINE = 5;
   
   /*
    * # of PARAGRAPH_SYMBOL == # of NEW_LINE_CHAR // Double spaced, check for space after PARAGRAPH_SYMBOL and text
@@ -38,6 +39,8 @@ public class Chapter extends TextBlock
       determineParagraphType(chapterText);
     }
     
+    //TODO: Determine what should be the getNextPassage splitter. Also figure out how to deal with pagebreaks
+    // (just do a simple copy replace PAGE_SYMBOLE + PARAGRAPH_SYMBOL with ""?)
     
     while (index.get() > -1) // Index is set in the addNextChapter method. It becomes -1 on the last chapter.
     {
@@ -53,11 +56,14 @@ public class Chapter extends TextBlock
   
   private void determineParagraphType(String chapterText)
   {
-    int numNewLine = Util.countChar(chapterText, NEW_LINE_CHAR);
     int numParagraphSymbol = Util.countChar(chapterText, PARAGRAPH_SYMBOL);
+    int numNewLine = Util.countChar(chapterText, NEW_LINE_CHAR);
     int numPageSymbol = Util.countChar(chapterText, PAGE_SYMBOL);
+    int numLineBreaks = numNewLine + numPageSymbol;
     
-    if (numParagraphSymbol == numNewLine)
+    // For some reason, it is counting one more page symbol than actually exists, but I don't know why.
+//    if (numParagraphSymbol == numLineBreaks || numParagraphSymbol == numLineBreaks - 1)
+    if (isWithinOne(numParagraphSymbol, numLineBreaks))
     {
       if (chapterText.indexOf(PARAGRAPH_SYMBOL + " ") > -1)
       {
@@ -68,9 +74,18 @@ public class Chapter extends TextBlock
         paragraphType = DOUBLE_SPACED_CANT_DETERMINE;
       }
     }
-    else if (numParagraphSymbol == numPageSymbol)
+//    else if (numParagraphSymbol == numPageSymbol)
+    else if (isWithinOne(numParagraphSymbol, numPageSymbol))
     {
-      paragraphType = CANT_DETERMINE;
+      if (chapterText.indexOf(NEW_LINE_CHAR + NEW_LINE_CHAR) > -1 || 
+        chapterText.indexOf(NEW_LINE_CHAR + " " + NEW_LINE_CHAR) > -1)
+      {
+        paragraphType = DOUBLE_LINE_BREAK;
+      }
+      else
+      {
+        paragraphType = CANT_DETERMINE;
+      }
     }
     else
     {
@@ -78,6 +93,18 @@ public class Chapter extends TextBlock
     }
     
     System.out.println("paragraphType: " + paragraphType);
+  }
+  
+  private boolean isWithinOne(int firstNum, int secondNum)
+  {
+    if (firstNum == secondNum || firstNum == secondNum + 1 || firstNum == secondNum -1)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
   
 }
