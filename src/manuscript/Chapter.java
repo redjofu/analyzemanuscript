@@ -3,6 +3,7 @@ package manuscript;
 import java.util.ArrayList;
 //import commons.lang.StringUtils;
 
+import util.PassageIndex;
 import util.Util;
 
 public class Chapter extends TextBlock
@@ -37,6 +38,7 @@ public class Chapter extends TextBlock
     if (paragraphType == 0)
     {
       determineParagraphType(chapterText);
+      float test = detectAverageLineLength(chapterText);
     }
     
     //TODO: Determine what should be the getNextPassage splitter. Also figure out how to deal with pagebreaks
@@ -107,4 +109,16 @@ public class Chapter extends TextBlock
     }
   }
   
+  private float detectAverageLineLength(String chapterText)
+  {
+    PassageIndex tempIndex = new PassageIndex();
+    int counter = 0;
+    ArrayList<Integer> lines = new ArrayList();
+    while (index.get() > -1 || counter++ < 50) // Index is set in the getNextPassage method. It becomes -1 on the last chapter.
+    {
+      lines.add(new String(Util.getNextPassage(chapterText, tempIndex, NEW_LINE_CHAR)).length());
+    }
+    System.out.println("hello");
+    return 1.0f;
+  }
 }
