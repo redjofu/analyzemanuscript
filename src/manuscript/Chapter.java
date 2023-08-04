@@ -114,9 +114,11 @@ public class Chapter extends TextBlock
     PassageIndex tempIndex = new PassageIndex();
     int counter = 0;
     ArrayList<Integer> lines = new ArrayList();
-    while (index.get() > -1 || counter++ < 50) // Index is set in the getNextPassage method. It becomes -1 on the last chapter.
+    while (tempIndex.get() > -1 || counter++ < 50) // Index is set in the getNextPassage method. It becomes -1 on the last chapter.
     {
-      lines.add(new String(Util.getNextPassage(chapterText, tempIndex, NEW_LINE_CHAR)).length());
+      String lineOfText = new String(Util.getNextPassage(chapterText, tempIndex, NEW_LINE_CHAR));
+      int lineLength = lineOfText.length();
+      lines.add(lineLength);
     }
     System.out.println("hello");
     return 1.0f;
