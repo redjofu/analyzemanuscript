@@ -38,7 +38,7 @@ public class Chapter extends TextBlock
     if (paragraphType == 0)
     {
       determineParagraphType(chapterText);
-      float test = detectAverageLineLength(chapterText);
+      float test = detectAverageLineLength(chapterText.replace(PAGE_SYMBOL, NEW_LINE_CHAR));
     }
     
     //TODO: Determine what should be the getNextPassage splitter. Also figure out how to deal with pagebreaks
@@ -114,14 +114,21 @@ public class Chapter extends TextBlock
     PassageIndex tempIndex = new PassageIndex();
     int counter = 0;
     ArrayList<Integer> lines = new ArrayList();
-    while (tempIndex.get() > -1 || counter < 50) // Index is set in the getNextPassage method. It becomes -1 on the last chapter.
+    while (tempIndex.get() > -1 && counter < 150) // Index is set in the getNextPassage method. It becomes -1 on the last chapter.
     {
       counter++;
       String lineOfText = new String(Util.getNextPassage(chapterText, tempIndex, NEW_LINE_CHAR));
-      int lineLength = lineOfText.length();
-      lines.add(lineLength);
+      if (counter != 1) // Contains only "Chapter 1" text or similar.
+      {
+        String modifiedLine = lineOfText.replace(NEW_LINE_CHAR, "").replace(PARAGRAPH_SYMBOL, "");
+        int lineLength = modifiedLine.length();
+        if (lineLength > 0)
+        {
+          lines.add(lineLength);
+          System.out.println(modifiedLine);              
+        }
+      }
     }
-    System.out.println("hello");
     return 1.0f;
   }
 }
