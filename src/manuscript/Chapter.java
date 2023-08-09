@@ -2,6 +2,7 @@ package manuscript;
 
 import java.util.ArrayList;
 //import commons.lang.StringUtils;
+import java.util.Collections;
 
 import util.PassageIndex;
 import util.Util;
@@ -130,5 +131,13 @@ public class Chapter extends TextBlock
       }
     }
     return 1.0f;
+  }
+  
+  private int getMedian(ArrayList<Integer> lines)
+  {
+    Collections.sort(lines);
+    int length = lines.size();
+    int middle = length / 2;
+    return lines.get(middle);
   }
 }
