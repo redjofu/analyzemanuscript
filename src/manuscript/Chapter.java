@@ -133,6 +133,17 @@ public class Chapter extends TextBlock
     return 1.0f;
   }
   
+  private float getMean(ArrayList<Integer> lines)
+  {
+    int sum = 0;
+    for (int i : lines)
+    {
+      sum += i;
+    }
+    float average = ((float)sum) / ((float)lines.size());
+    return average;
+  }
+  
   private int getMedian(ArrayList<Integer> lines)
   {
     Collections.sort(lines);
