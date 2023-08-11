@@ -123,14 +123,20 @@ public class Chapter extends TextBlock
       {
         String modifiedLine = lineOfText.replace(NEW_LINE_CHAR, "").replace(PARAGRAPH_SYMBOL, "");
         int lineLength = modifiedLine.length();
-        if (lineLength > 0)
+        if (lineLength > 0 && !isOnlySpaces(modifiedLine))
         {
           lines.add(lineLength);
-          System.out.println(modifiedLine);              
+          System.out.println(lineLength);              
         }
       }
     }
     return 1.0f;
+  }
+  
+  private boolean isOnlySpaces(String text)
+  {
+    String checkedLine = removeDuplicateSpaces(text);
+    return checkedLine == " ";
   }
   
   private float getMean(ArrayList<Integer> lines)
