@@ -126,7 +126,7 @@ public class Chapter extends TextBlock
         if (lineLength > 0 && !isOnlySpaces(modifiedLine))
         {
           lines.add(lineLength);
-          System.out.println(lineLength);              
+          System.out.println(modifiedLine);              
         }
       }
     }
@@ -136,7 +136,7 @@ public class Chapter extends TextBlock
   private boolean isOnlySpaces(String text)
   {
     String checkedLine = removeDuplicateSpaces(text);
-    return checkedLine == " ";
+    return checkedLine.equals(" ");
   }
   
   private float getMean(ArrayList<Integer> lines)
