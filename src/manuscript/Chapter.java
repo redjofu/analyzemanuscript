@@ -130,6 +130,9 @@ public class Chapter extends TextBlock
         }
       }
     }
+    
+    float mean = getMean(lines);
+    int median = getMedian(lines);
     return 1.0f;
   }
   
