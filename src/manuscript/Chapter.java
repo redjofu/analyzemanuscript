@@ -119,6 +119,7 @@ public class Chapter extends TextBlock
     {
       counter++;
       String lineOfText = new String(Util.getNextPassage(chapterText, tempIndex, NEW_LINE_CHAR));
+      // This is also fairly new.
       if (counter != 1) // Contains only "Chapter 1" text or similar.
       {
         String modifiedLine = lineOfText.replace(NEW_LINE_CHAR, "").replace(PARAGRAPH_SYMBOL, "");
@@ -130,7 +131,7 @@ public class Chapter extends TextBlock
         }
       }
     }
-    
+    // This was recently added... this is about where I was.
     float mean = getMean(lines);
     int median = getMedian(lines);
     return 1.0f;
