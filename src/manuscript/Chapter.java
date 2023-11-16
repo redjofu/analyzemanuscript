@@ -43,12 +43,12 @@ public class Chapter extends TextBlock
     }
     
     //TODO: Determine what should be the getNextPassage splitter. Also figure out how to deal with pagebreaks
-    // (just do a simple copy replace PAGE_SYMBOLE + PARAGRAPH_SYMBOL with ""?)
+    // (just do a simple copy replace PAGE_SYMBOL + PARAGRAPH_SYMBOL with ""?)
     
     while (index.get() > -1) // Index is set in the addNextChapter method. It becomes -1 on the last chapter.
     {
-      /* In PDFs, actual NEW_LINE_CHAR has to be doubled because PDFs put in hard breaks where there are actual breaks in the PDF but
-       * not necessarily where there is a break in the text.
+      /* In PDFs, actual NEW_LINE_CHAR has to be doubled because PDFs put in hard breaks where there are actual breaks 
+       * in the PDF but not necessarily where there is a break in the text.
        * TODO: This is likely only applicable to PDFs. If I ever implement DOCX, a check will need to be implemented
        * to determine whether to double this or not.
        */
